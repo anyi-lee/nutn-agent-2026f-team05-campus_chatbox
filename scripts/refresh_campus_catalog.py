@@ -243,7 +243,13 @@ def main():
     path = ROOT / 'data/campus_catalog.json'
     if path.exists():
         from publish_faculty_audit import retain_reviewed_faculty
-        output = retain_reviewed_faculty(json.loads(path.read_text(encoding='utf-8')), output)
+        previous = json.loads(path.read_text(encoding='utf-8'))
+        output = retain_reviewed_faculty(previous, output)
+        reviewed_windows = {unit['name']: unit for unit in previous['units'] if unit.get('email_windows')}
+        for unit in output['units']:
+            if unit['category'] == 'administrative' and unit['name'] in reviewed_windows:
+                reviewed = reviewed_windows[unit['name']]
+                unit.update(email_windows=reviewed['email_windows'], email_windows_source=reviewed['email_windows_source'])
     path.write_text(json.dumps(output, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     from build_email_directory import build_directory
     (ROOT / 'ui/email_directory.json').write_text(json.dumps(build_directory(), ensure_ascii=False, indent=2)+'\n', encoding='utf-8')

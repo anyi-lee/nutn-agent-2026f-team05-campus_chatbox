@@ -20,14 +20,10 @@ from campus_service import CampusService, FACULTY_DATA_PATH, OFFICE_DATA_PATH  #
 from campus_catalog import CATALOG_PATH  # noqa: E402
 
 
-SESSION_HOST = SessionHost(service_factory=lambda: CampusService(campus_enabled=True),
-                           source_paths=(FACULTY_DATA_PATH, OFFICE_DATA_PATH, CATALOG_PATH))
-
-
 class CampusRequestHandler(SimpleHTTPRequestHandler):
     """Serve the static UI and its JSON host endpoints."""
 
-    session_host = SESSION_HOST
+    session_host: SessionHost
 
     def _owner(self) -> str | None:
         cookie = SimpleCookie()
@@ -122,6 +118,10 @@ class CampusRequestHandler(SimpleHTTPRequestHandler):
 
 
 def run(host: str = "127.0.0.1", port: int = 8000) -> None:
+    CampusRequestHandler.session_host = SessionHost(
+        service_factory=lambda: CampusService(campus_enabled=True),
+        source_paths=(FACULTY_DATA_PATH, OFFICE_DATA_PATH, CATALOG_PATH),
+    )
     server = ThreadingHTTPServer((host, port), CampusRequestHandler)
     print(f"Campus Chatbot UI: http://{host}:{port}")
     print("Press Ctrl+C to stop")

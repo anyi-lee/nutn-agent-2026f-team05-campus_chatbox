@@ -102,6 +102,52 @@ class EmailDirectoryTests(unittest.TestCase):
                 self.assertEqual(result['send_status'], 'not_sent')
                 self.assertIn('資訊工程學系', result['email_draft']['body'])
 
+    def test_section_draft_requires_explicit_official_contact_and_never_falls_back(self):
+        with tempfile.TemporaryDirectory() as directory:
+            service = CampusService(campus_enabled=True, email_generator=GeminiEmailGenerator(api_key=''),
+                                    outbox_path=Path(directory) / 'outbox.sqlite3')
+            host = SessionHost(service_factory=lambda: service)
+            owner, session = host.bootstrap(None)
+            payload = {'session_id': session['session_id'], 'generation': session['generation'],
+                       'purpose': 'other', 'student_name': '合成學生', 'student_department': '資訊工程學系',
+                       'request_details': '想詢問本學期紙本成績單的郵寄時間'}
+            section = '教務處學籍成績組'
+            status, result = host.handle(owner, session['csrf_token'], '/api/email-draft', dict(payload, teacher_name=section))
+            self.assertEqual(status, 404, result)
+            self.assertEqual(result['error']['code'], 'OFFICE_RECIPIENT_NOT_VERIFIED')
+            self.assertFalse(service.pending_drafts)
+            for name, address in [('魏婉婷', 'weiwt@mail.nutn.edu.tw'), ('徐小姐', 'yihui@mail.nutn.edu.tw')]:
+                with self.subTest(name=name):
+                    recipient = f'{section}（{name}）'
+                    status, result = host.handle(owner, session['csrf_token'], '/api/email-draft', dict(payload, teacher_name=recipient))
+                    self.assertEqual(status, 200, result)
+                    self.assertEqual(result['email_draft']['to'], address)
+                    self.assertIn('承辦人您好', result['email_draft']['body'])
+                    self.assertTrue(result['citations'][0]['url'].endswith('temp=office3'))
+                    self.assertEqual(result['send_status'], 'not_sent')
+
+
+    def test_every_reviewed_admin_window_resolves_exact_address_and_citation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            service = CampusService(campus_enabled=True, email_generator=GeminiEmailGenerator(api_key=''),
+                                    outbox_path=Path(directory) / 'outbox.sqlite3')
+            coverage = set()
+            for unit in service.catalog.units:
+                if unit['category'] == 'administrative' and (unit.get('public_email') or unit.get('email_windows')):
+                    coverage.add(unit['name'])
+                for contact in unit.get('email_windows', []):
+                    recipient = f"{unit['name']}（{contact['name']}）"
+                    with self.subTest(recipient=recipient):
+                        status, result = service.create_email_draft({'teacher_name': recipient, 'purpose': 'other',
+                            'student_name': '合成學生', 'request_details': '想詢問公開行政聯絡資訊'})
+                        self.assertEqual(status, 200, result)
+                        self.assertEqual(result['email_draft']['to'], contact['public_email'])
+                        self.assertEqual(result['citations'][0]['url'], unit['email_windows_source']['url'])
+                        self.assertEqual(result['send_status'], 'not_sent')
+            self.assertGreaterEqual(len(coverage), 43)
+            self.assertIn('總務處出納組', coverage)
+            self.assertIn('教務處學籍成績組', coverage)
+
 
 if __name__ == '__main__':
     unittest.main()

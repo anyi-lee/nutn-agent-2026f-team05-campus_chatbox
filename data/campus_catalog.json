@@ -512,6 +512,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "黃慶圓", "title": "教務處秘書、單位聯繫及公文", "public_email": "yuan0510@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-e77b4c479500"
     },
     {
@@ -531,6 +535,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://osa.nutn.edu.tw/index.php?group=sa1&id=41&index=3&lang=cht&option=module&task=showlist", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "楊富仲", "title": "學務長室、學務行政聯繫", "public_email": "finn10377@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-1b683ff4981d"
     },
     {
@@ -549,6 +557,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://oga.nutn.edu.tw/mode02.asp?m=20180507140620279&t=list", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "趙善立", "title": "總務處秘書、跨組業務協調", "public_email": "sanli0131@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-4f26a07c3a05"
     },
     {
@@ -587,6 +599,10 @@
       "validity": "active",
       "page_status": "fetch_failed",
       "error_type": "URLError",
+      "email_windows_source": {"url": "https://academic.nutn.edu.tw/upload/cht/161/3917_file_1.pdf", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "國際學生服務公開信箱", "title": "國際學生與入學諮詢", "public_email": "oia-1@pubmail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-bc514dfdf135"
     },
     {
@@ -629,6 +645,10 @@
       "page_status": "fetch_failed",
       "error_type": "URLError",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list",
+      "email_windows_source": {"url": "https://sports.nutn.edu.tw/", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "體育室聯絡信箱", "title": "體育室聯絡", "public_email": "phchen@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-5807369cebad"
     },
     {
@@ -650,6 +670,10 @@
       "validity": "active",
       "page_status": "fetched",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list",
+      "email_windows_source": {"url": "https://www.nutn.edu.tw/secretariat/mode02.aspx?boss=20240627133644033", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "秘書室公務聯絡", "title": "公務信件及行政聯繫", "public_email": "janeyang@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-a7220fc17b0b"
     },
     {
@@ -836,6 +860,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://alumni.nutn.edu.tw/?page_id=8646", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "劉哲宏", "title": "校友服務中心主任", "public_email": "chehung@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-6ca1eb49c8fa",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -857,6 +885,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://alumni.nutn.edu.tw/?page_id=8646", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "蘇美方", "title": "校友服務及校友業務", "public_email": "meifang@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-dce2876055b7",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -878,6 +910,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://alumni.nutn.edu.tw/employment/%E7%95%A2%E6%A5%AD%E9%9B%A2%E6%A0%A1%E6%89%8B%E7%BA%8C/", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "楊小姐", "title": "就業輔導組、畢業離校諮詢", "public_email": "yms1202@gm2.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-78885fc960bb",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -899,6 +935,11 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://lis.nutn.edu.tw/p/406-1001-1813,r56.php?Lang=zh-tw", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "李玲玲", "title": "導覽與文獻傳遞", "public_email": "lingling@mail.nutn.edu.tw"},
+        {"name": "柯春蘭", "title": "讀者服務櫃台", "public_email": "violet@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-6ee07b07186a",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -920,6 +961,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://academic.nutn.edu.tw/upload/cht/161/4084_file_1.pdf", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "招生公開信箱", "title": "招生業務", "public_email": "admission@pubmail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-979a54e400aa",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -941,6 +986,11 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://lis.nutn.edu.tw/p/406-1001-1813,r56.php?Lang=zh-tw", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "林麗芳", "title": "圖書採購與館藏", "public_email": "antonia@mail.nutn.edu.tw"},
+        {"name": "蔡佳縈", "title": "編目與資料庫", "public_email": "chytsai@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-a77d130b1d51",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -962,6 +1012,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office2", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "陳玉鈴", "title": "教學業務組組長", "public_email": "yulin0703@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-cae401bd1abc",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -983,6 +1037,12 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://lis.nutn.edu.tw/p/406-1001-1813,r56.php?Lang=zh-tw", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "曾映鳳", "title": "教務、學生與選課系統", "public_email": "monica@mail.nutn.edu.tw"},
+        {"name": "林芳彬", "title": "學務系統與帳號登入", "public_email": "itjames@mail.nutn.edu.tw"},
+        {"name": "陳憲揚", "title": "資訊系統組組長", "public_email": "hychen@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-ea912279b093",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1005,7 +1065,18 @@
       "validity": "active",
       "page_status": "fetched",
       "chunk_id": "campus-unit-04f12789160f",
-      "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
+      "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list",
+      "email_windows_source": {
+        "url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office3",
+        "retrieved_at": "2026-11-16"
+      },
+      "email_windows": [
+        {"name": "魏婉婷", "title": "理工學院（含資工系）學籍與成績單", "public_email": "weiwt@mail.nutn.edu.tw"},
+        {"name": "蔡國泰", "title": "藝術學院及管理學院學籍與成績單", "public_email": "tgt123@mail.nutn.edu.tw"},
+        {"name": "張心梅", "title": "人文學院及環生學院學籍與成績單", "public_email": "night91@mail.nutn.edu.tw"},
+        {"name": "李郁翔", "title": "教育學院學籍與成績單（職務代理）", "public_email": "xiang0180@mail.nutn.edu.tw"},
+        {"name": "徐小姐", "title": "成績單印製、核發與諮詢", "public_email": "yihui@mail.nutn.edu.tw"}
+      ]
     },
     {
       "name": "圖資處網路服務組",
@@ -1025,6 +1096,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://lis.nutn.edu.tw/p/406-1001-1813,r56.php?Lang=zh-tw", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "蘇溢芳", "title": "網路服務組組長", "public_email": "ifangsu@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-1e15f4a703b4",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1046,6 +1121,11 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office4", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "孫淑惠", "title": "研究所課務", "public_email": "sun@mail.nutn.edu.tw"},
+        {"name": "方瑾瑜", "title": "研究所課務", "public_email": "f2016058@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-dcfedb108660",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1067,6 +1147,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://lis.nutn.edu.tw/p/406-1001-1813,r56.php?Lang=zh-tw", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "柯春蘭", "title": "一樓服務台", "public_email": "violet@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-e5dde9d283af",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1088,6 +1172,11 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office6", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "陳思文", "title": "進修推廣組行政聯繫", "public_email": "shibun@mail.nutn.edu.tw"},
+        {"name": "郭旭芳", "title": "進修推廣組組長", "public_email": "kuos@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-e05fc0c686cd",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1130,6 +1219,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office7", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "張主揚", "title": "數位學習中心主任", "public_email": "cychang@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-03925f1288af",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1172,6 +1265,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office8", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "高佳吟", "title": "教學與學習發展中心行政業務", "public_email": "jfkcy@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-5bfe808fdffe",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1193,6 +1290,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://lis.nutn.edu.tw/p/406-1001-1813,r56.php?Lang=zh-tw", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "林相作", "title": "榮譽分館服務", "public_email": "lszo@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-f8704b82620e",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1216,6 +1317,10 @@
       "page_status": "fetch_failed",
       "error_type": "URLError",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list",
+      "email_windows_source": {"url": "https://phyedu.nutn.edu.tw/faculty/full-time-teacher-zh/%E9%84%AD%E5%AE%89%E5%9F%8E", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "鄭安城", "title": "體育室主任", "public_email": "cheng@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-dabd49a38769"
     },
     {
@@ -1236,6 +1341,11 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://osa.nutn.edu.tw/index.php?group=sa3&id=966&index=2&lang=cht&option=module&task=showlist", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "林季誼", "title": "學生社團與活動", "public_email": "jimei29@mail.nutn.edu.tw"},
+        {"name": "高振嘉", "title": "社團輔導與服務學習", "public_email": "chia@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-ab17f84a0def",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1257,6 +1367,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://academic.nutn.edu.tw/upload/cht/161/3917_file_1.pdf", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "學生住宿窗口", "title": "學生宿舍與住宿諮詢", "public_email": "osa-me@pubmail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-86f16cf287eb",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1278,6 +1392,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://osa.nutn.edu.tw/index.php?group=sa4&id=165&index=2&lang=cht&option=module&task=showlist", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "徐雅文", "title": "衛生保健、學生健康服務", "public_email": "shue@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-7385368fd214",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1362,6 +1480,15 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://oga.nutn.edu.tw/mode02.asp?m=20180508120051474&t=list", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "林芸安", "title": "日間大學部學雜費、學分費繳費單", "public_email": "yunan@mail.nutn.edu.tw"},
+        {"name": "陳依吟", "title": "日間研究所繳費單、成績單與學生證補發繳費", "public_email": "yiyin1015@mail.nutn.edu.tw"},
+        {"name": "吳錦屏", "title": "校內款項撥付、收據與入帳", "public_email": "jinping@mail.nutn.edu.tw"},
+        {"name": "蕭嘉棋", "title": "專案款項撥付", "public_email": "sj0013@mail.nutn.edu.tw"},
+        {"name": "李佳亭", "title": "薪津與所得扣繳", "public_email": "lisa@mail.nutn.edu.tw"},
+        {"name": "許瑞玲", "title": "出納組組長", "public_email": "hjl9501@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-31c1822ad449",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1404,6 +1531,11 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://oga.nutn.edu.tw/eng/mode02.asp?m=20180626115612161&t=list", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "丁慧如", "title": "環境安全衛生組組長", "public_email": "hting@mail.nutn.edu.tw"},
+        {"name": "郭先生（環安組）", "title": "毒性物質、廢棄物與回收", "public_email": "justin@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-50af4cacce29",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1425,6 +1557,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://randd.nutn.edu.tw/mode02.asp?m=20240220110901912&t=list", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "研發長公務聯絡", "title": "研究發展處主管聯絡", "public_email": "david@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-225d0998f4fb",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1446,6 +1582,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://randd.nutn.edu.tw/01_news_page.asp?num=20251203150453874", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "研究計畫聯絡窗口", "title": "學術發展組所轄研究計畫", "public_email": "cathywu@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-f764496d260e",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1467,6 +1607,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://randd.nutn.edu.tw/01_news_page.asp?num=20241122160238537", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "研究計畫聯絡窗口", "title": "計畫服務組所轄研究計畫", "public_email": "cylin2024@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-4574868d482a",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1488,6 +1632,10 @@
       "authority": "official",
       "validity": "active",
       "page_status": "fetched",
+      "email_windows_source": {"url": "https://randd.nutn.edu.tw/mode02.asp?m=20240220111609012&t=list", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "蔡淑吟", "title": "創新育成、產學與學生創業", "public_email": "shuine@mail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-92daf59fa6af",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     },
@@ -1532,6 +1680,10 @@
       "validity": "active",
       "page_status": "fetch_failed",
       "error_type": "URLError",
+      "email_windows_source": {"url": "https://oia.nutn.edu.tw/wp-content/uploads/2025/03/114%E5%AD%B8%E5%B9%B4%E5%BA%A6%E7%AC%AC2%E5%AD%B8%E6%9C%9F%E5%87%BA%E5%9C%8B%E4%BA%A4%E6%8F%9B%E5%AD%B8%E7%94%9F%E7%94%84%E9%81%B8%E7%B0%A1%E7%AB%A0.pdf", "retrieved_at": "2026-11-16"},
+      "email_windows": [
+        {"name": "交換學生聯絡信箱", "title": "交換學生申請", "public_email": "oia-1@pubmail.nutn.edu.tw"}
+      ],
       "chunk_id": "campus-unit-51cb552d2f13",
       "phone_source_url": "https://personnel.nutn.edu.tw/mode02.asp?m=20220221163409511&t=list"
     }

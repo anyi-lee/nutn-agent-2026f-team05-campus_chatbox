@@ -146,6 +146,8 @@ button { color: inherit; }
 .trace-list { padding: 0 12px 11px; display: grid; gap: 6px; }
 .trace-item { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; color: var(--muted); font-size: 11px; }
 .trace-item b { color: var(--ink); }
+.quick-card[hidden] { display: none; }
+.mas-trace p, .mas-trace li { overflow-wrap: anywhere; font-size: 12px; line-height: 1.65; }
 .typing { display: flex; gap: 4px; padding: 13px 15px; border: 1px solid var(--line); border-radius: 4px 14px 14px 14px; background: #fff; }
 .typing span { width: 6px; height: 6px; border-radius: 50%; background: #8ba1b4; animation: pulse 1s infinite; }
 .typing span:nth-child(2) { animation-delay: .15s; }.typing span:nth-child(3) { animation-delay: .3s; }

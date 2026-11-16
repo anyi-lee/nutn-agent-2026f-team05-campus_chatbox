@@ -1,6 +1,6 @@
 {
   "schema_version": "email-directory-v2",
-  "source_sha256": "3a3a06b2702c3513397d376cf45aff18a10f06954722d7ff18d412ce5f34fbc5",
+  "source_sha256": "e167863a7601a9c4cbd90014518c241ab3b14eba866b2af96d4b854278019616",
   "retrieved_at": "2026-11-03T00:17:44+08:00",
   "units": [
     {
@@ -117,36 +117,40 @@
       "name": "校長室",
       "category": "administrative",
       "url": "https://secretariat.nutn.edu.tw/mode02.aspx?boss=20240621163719917&mk=A",
-      "parent_office": "校長室"
+      "parent_office": "校長室",
+      "phone": "06-2133111 轉 112~116"
     },
     {
       "name": "教務處",
       "category": "administrative",
-      "url": "https://academic.nutn.edu.tw/",
+      "url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office",
       "parent_office": "教務處"
     },
     {
       "name": "學務處",
       "category": "administrative",
-      "url": "https://osa.nutn.edu.tw/",
-      "parent_office": "學務處"
+      "url": "https://osa.nutn.edu.tw/index.php?group=sa1&id=41&index=3&lang=cht&option=module&task=showlist",
+      "parent_office": "學務處",
+      "phone": "06-2133111"
     },
     {
       "name": "總務處",
       "category": "administrative",
-      "url": "https://oga.nutn.edu.tw",
-      "parent_office": "總務處"
+      "url": "https://oga.nutn.edu.tw/mode02.asp?m=20180507140620279&t=list",
+      "parent_office": "總務處",
+      "phone": "(06)2133111"
     },
     {
       "name": "研究發展處",
       "category": "administrative",
       "url": "https://randd.nutn.edu.tw/",
-      "parent_office": "研究發展處"
+      "parent_office": "研究發展處",
+      "phone": "(06)2133111"
     },
     {
       "name": "國際事務處",
       "category": "administrative",
-      "url": "https://oia.nutn.edu.tw/",
+      "url": "https://academic.nutn.edu.tw/upload/cht/161/3917_file_1.pdf",
       "parent_office": "國際事務處"
     },
     {
@@ -159,265 +163,309 @@
       "name": "體育室",
       "category": "administrative",
       "url": "https://sports.nutn.edu.tw/",
-      "parent_office": "體育室"
+      "parent_office": "體育室",
+      "phone": "06-2133111 轉 341"
     },
     {
       "name": "秘書室",
       "category": "administrative",
-      "url": "https://secretariat.nutn.edu.tw/",
-      "parent_office": "秘書室"
+      "url": "https://www.nutn.edu.tw/secretariat/mode02.aspx?boss=20240627133644033",
+      "parent_office": "秘書室",
+      "phone": "06-2133111 轉 111~117"
     },
     {
       "name": "人事室",
       "category": "administrative",
       "url": "https://personnel.nutn.edu.tw",
-      "parent_office": "人事室"
+      "parent_office": "人事室",
+      "phone": "06-2133111 轉 150~156"
     },
     {
       "name": "主計室",
       "category": "administrative",
       "url": "https://account.nutn.edu.tw",
-      "parent_office": "主計室"
+      "parent_office": "主計室",
+      "phone": "06-2133111 轉 160~167"
     },
     {
       "name": "校友服務中心",
       "category": "administrative",
       "url": "https://alumni.nutn.edu.tw/",
-      "parent_office": "校友服務中心"
+      "parent_office": "校友服務中心",
+      "phone": "(06)2133111"
     },
     {
       "name": "通識教育中心",
       "category": "administrative",
       "url": "https://genedu.nutn.edu.tw/",
-      "parent_office": "通識教育中心"
+      "parent_office": "通識教育中心",
+      "phone": "06-2133111 轉 785、786、788"
     },
     {
       "name": "師資培育中心",
       "category": "administrative",
       "url": "https://phpweb4.nutn.edu.tw/cte/",
-      "parent_office": "師資培育中心"
+      "parent_office": "師資培育中心",
+      "phone": "06-2133111 轉 135~139"
     },
     {
       "name": "特殊教育中心",
       "category": "administrative",
       "url": "https://spedcenter.nutn.edu.tw/",
-      "parent_office": "特殊教育中心"
+      "parent_office": "特殊教育中心",
+      "phone": "06-2133111 轉 639、643~646、864"
     },
     {
       "name": "視障教育與重建中心",
       "category": "administrative",
       "url": "https://www.nutn.edu.tw/vhc/",
-      "parent_office": "視障教育與重建中心"
+      "parent_office": "視障教育與重建中心",
+      "phone": "06-2133111 轉 720、721、730 06-2138354"
     },
     {
       "name": "國際事務處語文中心",
       "category": "administrative",
       "url": "https://oia.nutn.edu.tw/",
-      "parent_office": "國際事務處"
+      "parent_office": "國際事務處",
+      "phone": "06-2133111 轉 851、856、149"
     },
     {
       "name": "校友服務中心主任",
       "category": "administrative",
-      "url": "https://alumni.nutn.edu.tw/",
-      "parent_office": "校友服務中心"
+      "url": "https://alumni.nutn.edu.tw/?page_id=8646",
+      "parent_office": "校友服務中心",
+      "phone": "06-2133111 轉 500"
     },
     {
       "name": "校友服務中心校友服務組",
       "category": "administrative",
-      "url": "https://alumni.nutn.edu.tw/",
-      "parent_office": "校友服務中心"
+      "url": "https://alumni.nutn.edu.tw/?page_id=8646",
+      "parent_office": "校友服務中心",
+      "phone": "06-2133111 轉 510~512"
     },
     {
       "name": "校友服務中心就業輔導組",
       "category": "administrative",
-      "url": "https://alumni.nutn.edu.tw/",
-      "parent_office": "校友服務中心"
+      "url": "https://alumni.nutn.edu.tw/employment/%E7%95%A2%E6%A5%AD%E9%9B%A2%E6%A0%A1%E6%89%8B%E7%BA%8C/",
+      "parent_office": "校友服務中心",
+      "phone": "06-2133111 轉 506"
     },
     {
       "name": "圖資處讀者服務組",
       "category": "administrative",
-      "url": "https://lis.nutn.edu.tw/",
-      "parent_office": "圖資處"
+      "url": "https://lis.nutn.edu.tw/p/406-1001-1813,r56.php?Lang=zh-tw",
+      "parent_office": "圖資處",
+      "phone": "06-2133111 轉 255、7713、270~274"
     },
     {
       "name": "教務處企劃組",
       "category": "administrative",
-      "url": "https://academic.nutn.edu.tw/",
-      "parent_office": "教務處"
+      "url": "https://academic.nutn.edu.tw/upload/cht/161/4084_file_1.pdf",
+      "parent_office": "教務處",
+      "phone": "06-2133111 轉 240~243"
     },
     {
       "name": "圖資處館藏發展組",
       "category": "administrative",
-      "url": "https://lis.nutn.edu.tw/",
-      "parent_office": "圖資處"
+      "url": "https://lis.nutn.edu.tw/p/406-1001-1813,r56.php?Lang=zh-tw",
+      "parent_office": "圖資處",
+      "phone": "06-2133111 轉 260~263"
     },
     {
       "name": "教務處教學業務組",
       "category": "administrative",
-      "url": "https://academic.nutn.edu.tw/",
-      "parent_office": "教務處"
+      "url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office2",
+      "parent_office": "教務處",
+      "phone": "06-2133111 轉 220、222、223、225"
     },
     {
       "name": "圖資處資訊系統組",
       "category": "administrative",
-      "url": "https://lis.nutn.edu.tw/",
-      "parent_office": "圖資處"
+      "url": "https://lis.nutn.edu.tw/p/406-1001-1813,r56.php?Lang=zh-tw",
+      "parent_office": "圖資處",
+      "phone": "06-2133111 轉 602~606、609"
     },
     {
       "name": "教務處學籍成績組",
       "category": "administrative",
-      "url": "https://academic.nutn.edu.tw/",
-      "parent_office": "教務處"
+      "url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office3",
+      "parent_office": "教務處",
+      "phone": "06-2133111 轉 210~213"
     },
     {
       "name": "圖資處網路服務組",
       "category": "administrative",
-      "url": "https://lis.nutn.edu.tw/",
-      "parent_office": "圖資處"
+      "url": "https://lis.nutn.edu.tw/p/406-1001-1813,r56.php?Lang=zh-tw",
+      "parent_office": "圖資處",
+      "phone": "06-2133111 轉 551~552、601、607"
     },
     {
       "name": "教務處研究生教務組",
       "category": "administrative",
-      "url": "https://academic.nutn.edu.tw/",
-      "parent_office": "教務處"
+      "url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office4",
+      "parent_office": "教務處",
+      "phone": "06-2133111 轉 230~232"
     },
     {
       "name": "圖資處一樓服務台",
       "category": "administrative",
-      "url": "https://lis.nutn.edu.tw/",
-      "parent_office": "圖資處"
+      "url": "https://lis.nutn.edu.tw/p/406-1001-1813,r56.php?Lang=zh-tw",
+      "parent_office": "圖資處",
+      "phone": "06-2133111 轉 255"
     },
     {
       "name": "教務處進修推廣組",
       "category": "administrative",
-      "url": "https://academic.nutn.edu.tw/",
-      "parent_office": "教務處"
+      "url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office6",
+      "parent_office": "教務處",
+      "phone": "06-2133111 轉 245、246、248"
     },
     {
       "name": "圖資處格致樓辦公室",
       "category": "administrative",
       "url": "https://lis.nutn.edu.tw/",
-      "parent_office": "圖資處"
+      "parent_office": "圖資處",
+      "phone": "06-2133111 轉 608"
     },
     {
       "name": "教務處數位影音學習組",
       "category": "administrative",
-      "url": "https://academic.nutn.edu.tw/",
-      "parent_office": "教務處"
+      "url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office7",
+      "parent_office": "教務處",
+      "phone": "06-2133111 轉 781~782"
     },
     {
       "name": "圖資處文薈樓管理室",
       "category": "administrative",
       "url": "https://lis.nutn.edu.tw/",
-      "parent_office": "圖資處"
+      "parent_office": "圖資處",
+      "phone": "06-2133111 轉 554"
     },
     {
       "name": "教務處教學與學習發展中心",
       "category": "administrative",
-      "url": "https://academic.nutn.edu.tw/",
-      "parent_office": "教務處"
+      "url": "https://academic.nutn.edu.tw/index.php?lang=cht&temp=office8",
+      "parent_office": "教務處",
+      "phone": "06-2133111 轉 781、784、791、792"
     },
     {
       "name": "圖資處榮譽分館",
       "category": "administrative",
-      "url": "https://lis.nutn.edu.tw/",
-      "parent_office": "圖資處"
+      "url": "https://lis.nutn.edu.tw/p/406-1001-1813,r56.php?Lang=zh-tw",
+      "parent_office": "圖資處",
+      "phone": "06-2133111 轉 7113"
     },
     {
       "name": "體育室主任",
       "category": "administrative",
-      "url": "https://sports.nutn.edu.tw/",
-      "parent_office": "體育室"
+      "url": "https://phyedu.nutn.edu.tw/faculty/full-time-teacher-zh/%E9%84%AD%E5%AE%89%E5%9F%8E",
+      "parent_office": "體育室",
+      "phone": "06-2133111 轉 340"
     },
     {
       "name": "學務處課外活動指導組",
       "category": "administrative",
-      "url": "https://osa.nutn.edu.tw/",
-      "parent_office": "學務處"
+      "url": "https://osa.nutn.edu.tw/index.php?group=sa3&id=966&index=2&lang=cht&option=module&task=showlist",
+      "parent_office": "學務處",
+      "phone": "06-2133111 轉 310~312"
     },
     {
       "name": "學務處生活輔導組",
       "category": "administrative",
-      "url": "https://osa.nutn.edu.tw/",
-      "parent_office": "學務處"
+      "url": "https://academic.nutn.edu.tw/upload/cht/161/3917_file_1.pdf",
+      "parent_office": "學務處",
+      "phone": "06-2133111 轉 320~322、360~363、365、373"
     },
     {
       "name": "學務處衛生保健組",
       "category": "administrative",
-      "url": "https://osa.nutn.edu.tw/",
-      "parent_office": "學務處"
+      "url": "https://osa.nutn.edu.tw/index.php?group=sa4&id=165&index=2&lang=cht&option=module&task=showlist",
+      "parent_office": "學務處",
+      "phone": "06-2133111 轉 330、332"
     },
     {
       "name": "總務處事務組",
       "category": "administrative",
       "url": "https://oga.nutn.edu.tw",
-      "parent_office": "總務處"
+      "parent_office": "總務處",
+      "phone": "06-2133111 轉 410~413、415~417、419、408"
     },
     {
       "name": "總務處營繕組",
       "category": "administrative",
       "url": "https://oga.nutn.edu.tw",
-      "parent_office": "總務處"
+      "parent_office": "總務處",
+      "phone": "06-2133111 轉 420~424"
     },
     {
       "name": "總務處文書組",
       "category": "administrative",
       "url": "https://oga.nutn.edu.tw",
-      "parent_office": "總務處"
+      "parent_office": "總務處",
+      "phone": "06-2133111 轉 430~433"
     },
     {
       "name": "總務處出納組",
       "category": "administrative",
-      "url": "https://oga.nutn.edu.tw",
-      "parent_office": "總務處"
+      "url": "https://oga.nutn.edu.tw/mode02.asp?m=20180508120051474&t=list",
+      "parent_office": "總務處",
+      "phone": "06-2133111 轉 440~443、445、447"
     },
     {
       "name": "總務處保管組",
       "category": "administrative",
       "url": "https://oga.nutn.edu.tw",
-      "parent_office": "總務處"
+      "parent_office": "總務處",
+      "phone": "06-2133111 轉 450~452"
     },
     {
       "name": "總務處環安組",
       "category": "administrative",
-      "url": "https://oga.nutn.edu.tw",
-      "parent_office": "總務處"
+      "url": "https://oga.nutn.edu.tw/eng/mode02.asp?m=20180626115612161&t=list",
+      "parent_office": "總務處",
+      "phone": "06-2133111 轉 237~239 480、481"
     },
     {
       "name": "研究發展處研發長",
       "category": "administrative",
-      "url": "https://randd.nutn.edu.tw/",
-      "parent_office": "研究發展處"
+      "url": "https://randd.nutn.edu.tw/mode02.asp?m=20240220110901912&t=list",
+      "parent_office": "研究發展處",
+      "phone": "06-2133111 轉 140"
     },
     {
       "name": "研究發展處學術發展組",
       "category": "administrative",
-      "url": "https://randd.nutn.edu.tw/",
-      "parent_office": "研究發展處"
+      "url": "https://randd.nutn.edu.tw/01_news_page.asp?num=20251203150453874",
+      "parent_office": "研究發展處",
+      "phone": "06-2133111 轉 141~142"
     },
     {
       "name": "研究發展處計畫服務組",
       "category": "administrative",
-      "url": "https://randd.nutn.edu.tw/",
-      "parent_office": "研究發展處"
+      "url": "https://randd.nutn.edu.tw/01_news_page.asp?num=20241122160238537",
+      "parent_office": "研究發展處",
+      "phone": "06-2133111 轉 145~146"
     },
     {
       "name": "研究發展處創新育成中心",
       "category": "administrative",
-      "url": "https://randd.nutn.edu.tw/",
-      "parent_office": "研究發展處"
+      "url": "https://randd.nutn.edu.tw/mode02.asp?m=20240220111609012&t=list",
+      "parent_office": "研究發展處",
+      "phone": "06-2133111 轉 180~181"
     },
     {
       "name": "國際事務處國際長",
       "category": "administrative",
       "url": "https://oia.nutn.edu.tw/",
-      "parent_office": "國際事務處"
+      "parent_office": "國際事務處",
+      "phone": "06-2133111 轉 850"
     },
     {
       "name": "國際事務處國際事務組",
       "category": "administrative",
-      "url": "https://oia.nutn.edu.tw/",
-      "parent_office": "國際事務處"
+      "url": "https://oia.nutn.edu.tw/wp-content/uploads/2025/03/114%E5%AD%B8%E5%B9%B4%E5%BA%A6%E7%AC%AC2%E5%AD%B8%E6%9C%9F%E5%87%BA%E5%9C%8B%E4%BA%A4%E6%8F%9B%E5%AD%B8%E7%94%9F%E7%94%84%E9%81%B8%E7%B0%A1%E7%AB%A0.pdf",
+      "parent_office": "國際事務處",
+      "phone": "06-2133111 轉 855~856"
     }
   ],
   "recipients": [
@@ -1697,6 +1745,306 @@
       "name": "視障教育與重建中心",
       "title": "官方單位聯絡窗口",
       "department": "視障教育與重建中心",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處（黃慶圓）",
+      "title": "教務處秘書、單位聯繫及公文",
+      "department": "教務處",
+      "kind": "unit"
+    },
+    {
+      "name": "學務處（楊富仲）",
+      "title": "學務長室、學務行政聯繫",
+      "department": "學務處",
+      "kind": "unit"
+    },
+    {
+      "name": "總務處（趙善立）",
+      "title": "總務處秘書、跨組業務協調",
+      "department": "總務處",
+      "kind": "unit"
+    },
+    {
+      "name": "國際事務處（國際學生服務公開信箱）",
+      "title": "國際學生與入學諮詢",
+      "department": "國際事務處",
+      "kind": "unit"
+    },
+    {
+      "name": "體育室（體育室聯絡信箱）",
+      "title": "體育室聯絡",
+      "department": "體育室",
+      "kind": "unit"
+    },
+    {
+      "name": "秘書室（秘書室公務聯絡）",
+      "title": "公務信件及行政聯繫",
+      "department": "秘書室",
+      "kind": "unit"
+    },
+    {
+      "name": "校友服務中心主任（劉哲宏）",
+      "title": "校友服務中心主任",
+      "department": "校友服務中心主任",
+      "kind": "unit"
+    },
+    {
+      "name": "校友服務中心校友服務組（蘇美方）",
+      "title": "校友服務及校友業務",
+      "department": "校友服務中心校友服務組",
+      "kind": "unit"
+    },
+    {
+      "name": "校友服務中心就業輔導組（楊小姐）",
+      "title": "就業輔導組、畢業離校諮詢",
+      "department": "校友服務中心就業輔導組",
+      "kind": "unit"
+    },
+    {
+      "name": "圖資處讀者服務組（李玲玲）",
+      "title": "導覽與文獻傳遞",
+      "department": "圖資處讀者服務組",
+      "kind": "unit"
+    },
+    {
+      "name": "圖資處讀者服務組（柯春蘭）",
+      "title": "讀者服務櫃台",
+      "department": "圖資處讀者服務組",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處企劃組（招生公開信箱）",
+      "title": "招生業務",
+      "department": "教務處企劃組",
+      "kind": "unit"
+    },
+    {
+      "name": "圖資處館藏發展組（林麗芳）",
+      "title": "圖書採購與館藏",
+      "department": "圖資處館藏發展組",
+      "kind": "unit"
+    },
+    {
+      "name": "圖資處館藏發展組（蔡佳縈）",
+      "title": "編目與資料庫",
+      "department": "圖資處館藏發展組",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處教學業務組（陳玉鈴）",
+      "title": "教學業務組組長",
+      "department": "教務處教學業務組",
+      "kind": "unit"
+    },
+    {
+      "name": "圖資處資訊系統組（曾映鳳）",
+      "title": "教務、學生與選課系統",
+      "department": "圖資處資訊系統組",
+      "kind": "unit"
+    },
+    {
+      "name": "圖資處資訊系統組（林芳彬）",
+      "title": "學務系統與帳號登入",
+      "department": "圖資處資訊系統組",
+      "kind": "unit"
+    },
+    {
+      "name": "圖資處資訊系統組（陳憲揚）",
+      "title": "資訊系統組組長",
+      "department": "圖資處資訊系統組",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處學籍成績組（魏婉婷）",
+      "title": "理工學院（含資工系）學籍與成績單",
+      "department": "教務處學籍成績組",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處學籍成績組（蔡國泰）",
+      "title": "藝術學院及管理學院學籍與成績單",
+      "department": "教務處學籍成績組",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處學籍成績組（張心梅）",
+      "title": "人文學院及環生學院學籍與成績單",
+      "department": "教務處學籍成績組",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處學籍成績組（李郁翔）",
+      "title": "教育學院學籍與成績單（職務代理）",
+      "department": "教務處學籍成績組",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處學籍成績組（徐小姐）",
+      "title": "成績單印製、核發與諮詢",
+      "department": "教務處學籍成績組",
+      "kind": "unit"
+    },
+    {
+      "name": "圖資處網路服務組（蘇溢芳）",
+      "title": "網路服務組組長",
+      "department": "圖資處網路服務組",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處研究生教務組（孫淑惠）",
+      "title": "研究所課務",
+      "department": "教務處研究生教務組",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處研究生教務組（方瑾瑜）",
+      "title": "研究所課務",
+      "department": "教務處研究生教務組",
+      "kind": "unit"
+    },
+    {
+      "name": "圖資處一樓服務台（柯春蘭）",
+      "title": "一樓服務台",
+      "department": "圖資處一樓服務台",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處進修推廣組（陳思文）",
+      "title": "進修推廣組行政聯繫",
+      "department": "教務處進修推廣組",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處進修推廣組（郭旭芳）",
+      "title": "進修推廣組組長",
+      "department": "教務處進修推廣組",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處數位影音學習組（張主揚）",
+      "title": "數位學習中心主任",
+      "department": "教務處數位影音學習組",
+      "kind": "unit"
+    },
+    {
+      "name": "教務處教學與學習發展中心（高佳吟）",
+      "title": "教學與學習發展中心行政業務",
+      "department": "教務處教學與學習發展中心",
+      "kind": "unit"
+    },
+    {
+      "name": "圖資處榮譽分館（林相作）",
+      "title": "榮譽分館服務",
+      "department": "圖資處榮譽分館",
+      "kind": "unit"
+    },
+    {
+      "name": "體育室主任（鄭安城）",
+      "title": "體育室主任",
+      "department": "體育室主任",
+      "kind": "unit"
+    },
+    {
+      "name": "學務處課外活動指導組（林季誼）",
+      "title": "學生社團與活動",
+      "department": "學務處課外活動指導組",
+      "kind": "unit"
+    },
+    {
+      "name": "學務處課外活動指導組（高振嘉）",
+      "title": "社團輔導與服務學習",
+      "department": "學務處課外活動指導組",
+      "kind": "unit"
+    },
+    {
+      "name": "學務處生活輔導組（學生住宿窗口）",
+      "title": "學生宿舍與住宿諮詢",
+      "department": "學務處生活輔導組",
+      "kind": "unit"
+    },
+    {
+      "name": "學務處衛生保健組（徐雅文）",
+      "title": "衛生保健、學生健康服務",
+      "department": "學務處衛生保健組",
+      "kind": "unit"
+    },
+    {
+      "name": "總務處出納組（林芸安）",
+      "title": "日間大學部學雜費、學分費繳費單",
+      "department": "總務處出納組",
+      "kind": "unit"
+    },
+    {
+      "name": "總務處出納組（陳依吟）",
+      "title": "日間研究所繳費單、成績單與學生證補發繳費",
+      "department": "總務處出納組",
+      "kind": "unit"
+    },
+    {
+      "name": "總務處出納組（吳錦屏）",
+      "title": "校內款項撥付、收據與入帳",
+      "department": "總務處出納組",
+      "kind": "unit"
+    },
+    {
+      "name": "總務處出納組（蕭嘉棋）",
+      "title": "專案款項撥付",
+      "department": "總務處出納組",
+      "kind": "unit"
+    },
+    {
+      "name": "總務處出納組（李佳亭）",
+      "title": "薪津與所得扣繳",
+      "department": "總務處出納組",
+      "kind": "unit"
+    },
+    {
+      "name": "總務處出納組（許瑞玲）",
+      "title": "出納組組長",
+      "department": "總務處出納組",
+      "kind": "unit"
+    },
+    {
+      "name": "總務處環安組（丁慧如）",
+      "title": "環境安全衛生組組長",
+      "department": "總務處環安組",
+      "kind": "unit"
+    },
+    {
+      "name": "總務處環安組（郭先生（環安組））",
+      "title": "毒性物質、廢棄物與回收",
+      "department": "總務處環安組",
+      "kind": "unit"
+    },
+    {
+      "name": "研究發展處研發長（研發長公務聯絡）",
+      "title": "研究發展處主管聯絡",
+      "department": "研究發展處研發長",
+      "kind": "unit"
+    },
+    {
+      "name": "研究發展處學術發展組（研究計畫聯絡窗口）",
+      "title": "學術發展組所轄研究計畫",
+      "department": "研究發展處學術發展組",
+      "kind": "unit"
+    },
+    {
+      "name": "研究發展處計畫服務組（研究計畫聯絡窗口）",
+      "title": "計畫服務組所轄研究計畫",
+      "department": "研究發展處計畫服務組",
+      "kind": "unit"
+    },
+    {
+      "name": "研究發展處創新育成中心（蔡淑吟）",
+      "title": "創新育成、產學與學生創業",
+      "department": "研究發展處創新育成中心",
+      "kind": "unit"
+    },
+    {
+      "name": "國際事務處國際事務組（交換學生聯絡信箱）",
+      "title": "交換學生申請",
+      "department": "國際事務處國際事務組",
       "kind": "unit"
     },
     {

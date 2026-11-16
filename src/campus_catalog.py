@@ -29,6 +29,18 @@ class CampusCatalog:
                 raise ValueError('Campus catalog contains an untrusted record')
             if row.get('public_email') and not re.fullmatch(r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}', row['public_email']):
                 raise ValueError('Campus catalog contains an invalid public email')
+        for unit in self.units:
+            if not unit.get('email_windows'):
+                continue
+            source = unit.get('email_windows_source', {})
+            if unit['category'] != 'administrative' or not official_url(source.get('url')) or not source.get('retrieved_at'):
+                raise ValueError('Office contact requires an official administrative source')
+            names = set()
+            for contact in unit['email_windows']:
+                if (not contact.get('name') or contact['name'] in names or not contact.get('title')
+                        or not re.fullmatch(r'[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)*nutn\.edu\.tw', contact.get('public_email', ''))):
+                    raise ValueError('Invalid or duplicate office contact')
+                names.add(contact['name'])
         role_aliases = {'校長室': ['校長'], '教務處': ['教務長'], '學務處': ['學務長'], '總務處': ['總務長']}
         for unit in self.units:
             unit['aliases'] = list(set(unit['aliases'] + role_aliases.get(unit['name'], [])))
@@ -71,6 +83,17 @@ class CampusCatalog:
                 'content': f"{unit['name']}官方公開聯絡 Email：{unit['public_email']}。",
                 'authority': 'official', 'validity': 'active', 'retrieved_at': unit['retrieved_at'],
                 'index_version': 'campus-index-v1', 'recipient_kind': 'unit', 'aliases': unit['aliases']})
+        for unit in self.units:
+            for contact in unit.get('email_windows', []):
+                source = unit['email_windows_source']
+                name = f"{unit['name']}（{contact['name']}）"
+                rows.append({'chunk_id': 'campus-office-contact-' + hashlib.sha256(name.encode()).hexdigest()[:12],
+                    'teacher_name': name, 'department': unit['name'], 'title': contact['title'],
+                    'source_id': 'nutn-office-contacts-' + hashlib.sha256(source['url'].encode()).hexdigest()[:12],
+                    'source_url': source['url'], 'retrieved_at': source['retrieved_at'], 'index_version': 'campus-index-v1',
+                    'public_email': contact['public_email'], 'research_areas': [], 'content': f"{name}：{contact['title']}。",
+                    'authority': 'official', 'validity': 'active', 'recipient_kind': 'unit',
+                    'office_contact': True, 'aliases': []})
         # A stable qualified display name prevents same-name recipients overwriting each other.
         counts = Counter(r['teacher_name'] for r in rows + list(existing))
         for row in rows:
@@ -145,7 +168,10 @@ def resolve_recipient(service, query):
     exact = [r for r in records if query in (r['teacher_name'], r['public_email'], r.get('person_name'))]
     if exact:
         return same_contact_once(exact)
-    matches = [r for r in records if any(
+    catalog = getattr(service, 'catalog', None)
+    if catalog and any(unit['category'] == 'administrative' and unit['name'] == query for unit in catalog.units):
+        return []
+    matches = [r for r in records if not r.get('office_contact') and any(
         token and token in query for token in (r['teacher_name'], r.get('person_name'), *r.get('aliases', [])))]
     people = [r for r in matches if r.get('recipient_kind') != 'unit']
     if people:
@@ -158,7 +184,7 @@ def resolve_recipient(service, query):
         if surname:
             matches = [r for r in records if r.get('recipient_kind') != 'unit' and r['teacher_name'].startswith(surname[1])]
     # Disambiguate duplicate people using an explicitly named department.
-    units = service.catalog.units_for(query) if getattr(service, 'catalog', None) else []
+    units = catalog.units_for(query) if catalog else []
     if units and matches and all(r.get('recipient_kind') != 'unit' for r in matches):
         return same_contact_once([r for r in matches if r.get('department') in {u['name'] for u in units}])
     narrowed = [r for r in matches if r.get('department') and r['department'] in query]

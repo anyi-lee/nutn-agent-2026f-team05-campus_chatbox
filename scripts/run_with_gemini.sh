@@ -25,8 +25,8 @@ if [[ "$EMAIL_AGENT_BACKEND" != "manual" && "$EMAIL_AGENT_BACKEND" != "langchain
   exit 1
 fi
 
-if [[ "$CHAT_WORKFLOW_BACKEND" != "baseline" && "$CHAT_WORKFLOW_BACKEND" != "routing" ]]; then
-  printf "CHAT_WORKFLOW_BACKEND 只能是 baseline 或 routing。\n"
+if [[ "$CHAT_WORKFLOW_BACKEND" != "baseline" && "$CHAT_WORKFLOW_BACKEND" != "routing" && "$CHAT_WORKFLOW_BACKEND" != "mas" ]]; then
+  printf "CHAT_WORKFLOW_BACKEND 只能是 baseline、routing 或 mas。\n"
   exit 1
 fi
 

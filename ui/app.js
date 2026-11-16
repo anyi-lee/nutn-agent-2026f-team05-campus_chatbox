@@ -433,6 +433,8 @@ async function sessionRequest(url, payload = {}) {
 
 async function loadConfig() {
   state.config = await request("/api/config");
+  const masButton = $("#quick-mas");
+  if (masButton) masButton.hidden = state.config.chat_workflow?.backend !== "mas";
   if (!memoryContractReady()) showToast(memoryVersionMessage);
   elements.teacher.innerHTML = state.config.teachers
     .map((teacher) => `<option value="${escapeHtml(teacher.name)}">${escapeHtml(teacher.name)} · ${escapeHtml(teacher.title)}</option>`)
@@ -446,7 +448,7 @@ async function loadConfig() {
   $("#template-teacher").innerHTML = '<option value="">請選擇收件對象</option>' + allRecipientOptions;
   $("#reuse-teacher").innerHTML = allRecipientOptions;
   try {
-    const directory = await request('/email_directory.json?v=email-form-2');
+    const directory = await request('/email_directory.json?v=email-form-4');
     if (directory.schema_version !== 'email-directory-v2' || !Array.isArray(directory.units) || !Array.isArray(directory.recipients)) throw new Error('收件人分類資料版本不符');
     state.emailDirectory = directory;
     populateRecipientLists();
@@ -501,6 +503,7 @@ function setRecipientMode(mode) {
   $("#office-section-select").innerHTML = '<option value="">請先選擇處室</option>';
   $("#office-section-select").value = '';
   $("#office-section-select").disabled = true;
+  resetOfficeContacts();
   $("#department-select").disabled = office;
   $("#department-select").required = !office;
   $("#office-select").value = '';
@@ -520,28 +523,71 @@ function showRecipientSource(unit) {
   if (!link.hidden) link.href = unit.url;
 }
 
+function resetOfficeContacts() {
+  const select = $("#office-contact-select");
+  $("#office-contact-picker").hidden = true;
+  select.innerHTML = '<option value="">請先選擇組別</option>';
+  select.value = '';
+  select.disabled = true;
+  select.required = false;
+}
+
+function selectedOfficeSection() {
+  return state.emailDirectory?.units.find(row => row.category === 'administrative' &&
+    row.name === $("#office-section-select").value && row.parent_office === $("#office-select").value);
+}
+
+function officeContactOptions(unit) {
+  return unit ? directoryRecipients().filter(row => row.kind === 'unit' && row.department === unit.name) : [];
+}
+
 function updateOfficeSections() {
   const name = $("#office-select").value;
   const unit = state.emailDirectory?.units.find(row => row.category === 'administrative' && row.name === name && row.parent_office === name);
   const select = $("#office-section-select");
   const sections = state.emailDirectory?.units.filter(row => row.category === 'administrative' && row.parent_office === name && row.name !== name) || [];
-  select.innerHTML = '<option value="">' + (unit ? '請選擇組別／聯絡窗口' : '請先選擇處室') + '</option>' + (unit ? `<option value="${escapeHtml(name)}">處室公開窗口（不指定組別）</option>` : '') + sections.map(row => `<option value="${escapeHtml(row.name)}">${escapeHtml(row.name.slice(name.length))}</option>`).join('');
+  const option = (row, label) => {
+    const suffix = officeContactOptions(row).length ? '' : row.phone ? '（僅電話／官方連結）' : '（僅官方連結）';
+    return `<option value="${escapeHtml(row.name)}">${escapeHtml(label + suffix)}</option>`;
+  };
+  select.innerHTML = '<option value="">' + (unit ? '請選擇組別／聯絡窗口' : '請先選擇處室') + '</option>' +
+    (unit ? option(unit, '處室聯絡窗口') : '') + sections.map(row => option(row, row.name.slice(name.length))).join('');
   select.value = '';
   select.disabled = !unit;
+  resetOfficeContacts();
   elements.teacher.value = '';
   $("#recipient-note").textContent = !unit ? '請先選擇處室。' : sections.length ? '請選擇此處室的組別，或選「處室公開窗口」。不會自動使用其他組別或處室的信箱。' : '目前名錄未列出此處室的組別，可選「處室公開窗口」。';
   showRecipientSource(unit);
 }
 
 function updateOfficeRecipient() {
-  const office = $("#office-select").value;
-  const name = $("#office-section-select").value;
-  const unit = state.emailDirectory?.units.find(row => row.category === 'administrative' && row.name === name && row.parent_office === office);
-  const record = unit && directoryRecipients().find(row => row.kind === 'unit' && row.name === name && row.department === name);
-  elements.teacher.value = unit && record ? record.name : '';
+  const unit = selectedOfficeSection();
+  const records = officeContactOptions(unit);
+  resetOfficeContacts();
+  if (records.some(row => row.name !== unit.name)) {
+    const select = $("#office-contact-select");
+    $("#office-contact-picker").hidden = false;
+    select.disabled = false;
+    select.required = true;
+    select.innerHTML = '<option value="">請選擇承辦窗口</option>' + records.map(row => {
+      const label = row.name === unit.name ? '組別公開信箱' : row.name.slice(unit.name.length + 1, -1);
+      return `<option value="${escapeHtml(row.name)}">${escapeHtml(label)} · ${escapeHtml(row.title)}</option>`;
+    }).join('');
+  }
+  updateOfficeContactSelection();
+}
+
+function updateOfficeContactSelection() {
+  const unit = selectedOfficeSection();
+  const picker = $("#office-contact-picker");
+  const name = picker.hidden ? unit?.name : $("#office-contact-select").value;
+  const record = officeContactOptions(unit).find(row => row.name === name);
+  elements.teacher.value = record?.name || '';
+  const phone = unit?.phone ? `可致電 ${unit.phone}。` : '';
   $("#recipient-note").textContent = !unit ? '請先選擇此處室的組別／聯絡窗口。' : record
-    ? `收件對象：${name}。將由官方資料查核公開聯絡信箱。`
-    : '此組別／窗口目前尚未收錄可驗證的公開信箱，無法產生草稿；請由官網確認。不會改寄處室或別組信箱。';
+    ? `收件對象：${record.name}。建立草稿時會重新驗證公務信箱。`
+    : !picker.hidden ? `請選擇此組已收錄的承辦窗口，不會自動選人。${phone}`
+    : `此組別／窗口目前尚未收錄可驗證的公開信箱，無法產生草稿。不會改寄處室或別組信箱。${phone}請由官網確認。`;
   showRecipientSource(unit);
 }
 
@@ -567,12 +613,15 @@ function updateAcademicRecipient() {
 function selectRecipientByName(name) {
   const row = directoryRecipients().find(item => item.name === name);
   if (!row) { elements.teacher.value = ''; return false; }
-  const office = row.kind === 'unit' && state.emailDirectory.units.some(unit => unit.category === 'administrative' && unit.name === row.name);
+  const officeUnit = row.kind === 'unit' && state.emailDirectory.units.find(unit => unit.category === 'administrative' && unit.name === row.department);
+  const office = Boolean(officeUnit);
   setRecipientMode(office ? 'office' : 'academic');
   if (office) {
-    const unit = state.emailDirectory.units.find(unit => unit.name === row.name && unit.category === 'administrative');
-    $("#office-select").value = unit.parent_office; updateOfficeSections();
-    $("#office-section-select").value = row.name; updateOfficeRecipient();
+    $("#office-select").value = officeUnit.parent_office; updateOfficeSections();
+    $("#office-section-select").value = officeUnit.name; updateOfficeRecipient();
+    if (!$("#office-contact-picker").hidden) {
+      $("#office-contact-select").value = row.name; updateOfficeContactSelection();
+    }
   } else {
     $("#department-select").value = row.department; updateDepartmentTeachers();
     $("#academic-teacher-select").value = row.name; updateAcademicRecipient();
@@ -583,18 +632,23 @@ function selectRecipientByName(name) {
 function validRecipientSelection() {
   const row = directoryRecipients().find(item => item.name === elements.teacher.value);
   if (!row) return false;
-  if ($("#recipient-office").checked) return row.kind === 'unit' && row.name === $("#office-section-select").value && state.emailDirectory.units.some(unit => unit.category === 'administrative' && unit.name === row.name && unit.parent_office === $("#office-select").value);
+  if ($("#recipient-office").checked) {
+    const unit = selectedOfficeSection();
+    const selected = $("#office-contact-picker").hidden ? unit?.name : $("#office-contact-select").value;
+    return row.name === selected && officeContactOptions(unit).includes(row);
+  }
   return row.department === $("#department-select").value && row.name === $("#academic-teacher-select").value;
 }
 
 function lockRecipientForm(locked) {
-  ['#recipient-office', '#recipient-academic', '#office-select', '#office-section-select', '#department-select', '#academic-teacher-select', '#teacher-name', '#purpose',
+  ['#recipient-office', '#recipient-academic', '#office-select', '#office-section-select', '#office-contact-select', '#department-select', '#academic-teacher-select', '#teacher-name', '#purpose',
     '#draft-form [name="student_name"]', '#draft-form [name="student_department"]', '#draft-form [name="student_grade"]', '#draft-form [name="request_details"]', '#draft-form [name="background"]']
     .forEach(selector => { $(selector).disabled = locked; });
   if (!locked) {
     const office = $("#recipient-office").checked;
     $("#office-select").disabled = !office;
     $("#office-section-select").disabled = !office || !state.emailDirectory?.units.some(unit => unit.category === 'administrative' && unit.name === $("#office-select").value && unit.parent_office === unit.name);
+    $("#office-contact-select").disabled = !office || $("#office-contact-picker").hidden;
     $("#department-select").disabled = office;
     $("#academic-teacher-select").disabled = office || !directoryRecipients().some(row => row.department === $("#department-select").value);
   }
@@ -653,6 +707,26 @@ function retrievalTrace(retrieval) {
 
 function workflowTrace(workflow) {
   if (!workflow) return "";
+  if (workflow.name === "mas") {
+    const names = {coordinator: "召集人", faculty: "師資專家", office: "行政專家", host: "系統"};
+    const stages = {plan: "派工決策", delegate: "分派任務", tool_proposal: "專家模型步驟",
+      tool_gate: "檢查工具權限", tool_result: "查詢結果", deliver: "回報召集人",
+      integrate: "整合", configuration: "模型設定"};
+    const renderStage = stage => {
+      const detail = stage.owner ? names[stage.owner] : stage.source_id || stage.tool || stage.code;
+      return `<li><b>${escapeHtml(names[stage.role] || stage.role)}</b> · ${escapeHtml(stages[stage.stage] || stage.stage)}
+        · ${escapeHtml(stage.status)}${detail ? ` · ${escapeHtml(detail)}` : ""}</li>`;
+    };
+    return `<div class="answer-meta"><span class="meta-chip">中央分工 · 唯讀</span>
+      <span class="meta-chip">${escapeHtml(workflow.evidence_mode === "test_provider" ? "離線測試替身" : workflow.live_status)}</span></div>
+      <details class="trace mas-trace">
+        <summary>查看召集人與兩位專家的分工紀錄</summary>
+        <p>Run ID：${escapeHtml(workflow.run_id)}<br>來源版本：${escapeHtml(workflow.source_version)}
+        <br>結果：${escapeHtml(workflow.stop_reason)} · 最終回答：${escapeHtml(names[workflow.final_role] || workflow.final_role)}
+        · 模型呼叫 ${Number(workflow.live_calls)} 次（真實）</p>
+        <ul>${(workflow.stages || []).map(renderStage).join("")}</ul>
+      </details>`;
+  }
   const label = workflow.route || workflow.stop_reason || "未決定";
   const stageRows = (workflow.stages || []).map((stage) => `
     <div class="trace-item">
@@ -1123,7 +1197,7 @@ async function submitDraft(event) {
   event.preventDefault();
   if (state.applyingDraft || state.revising) return;
   if (state.draftSubmitting) return;
-  if (!validRecipientSelection()) { $("#form-error").textContent = '請先選擇已驗證的處室，或依序選學系與老師。'; return; }
+  if (!validRecipientSelection()) { $("#form-error").textContent = '請選擇具有已驗證信箱的組別、承辦窗口或教師。'; return; }
   if (selectionsKey(state.selectedMemories) !== selectionsKey(state.appliedMemories)) {
     $("#form-error").textContent = "選取已變更，請先預覽並確認套用，再產生草稿。"; return;
   }
@@ -1252,6 +1326,10 @@ elements.input.addEventListener("keydown", (event) => {
 elements.input.addEventListener('compositionstart', () => { state.chatComposing = true; });
 elements.input.addEventListener('compositionend', () => { state.chatComposing = false; });
 $$('[data-query]').forEach((button) => button.addEventListener("click", () => sendMessage(button.dataset.query)));
+$("#quick-mas")?.addEventListener("click", () => {
+  const example = state.config?.chat_workflow?.example;
+  if (example) sendMessage(example);
+});
 $("#quick-email").addEventListener("click", () => openDraft());
 $("#nav-email").addEventListener("click", () => openDraft());
 $("#new-chat").addEventListener("click", resetChat);
@@ -1262,6 +1340,7 @@ $("#recipient-office").addEventListener('change', () => { setRecipientMode('offi
 $("#recipient-academic").addEventListener('change', () => { setRecipientMode('academic'); state.emailFormDirty = true; });
 $("#office-select").addEventListener('change', updateOfficeSections);
 $("#office-section-select").addEventListener('change', updateOfficeRecipient);
+$("#office-contact-select").addEventListener('change', updateOfficeContactSelection);
 $("#department-select").addEventListener('change', updateDepartmentTeachers);
 $("#academic-teacher-select").addEventListener('change', updateAcademicRecipient);
 elements.draftForm.addEventListener('input', () => { state.emailFormDirty = true; });

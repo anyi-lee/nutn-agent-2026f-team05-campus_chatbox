@@ -10,6 +10,7 @@ import http.cookiejar
 from http.server import ThreadingHTTPServer
 from urllib import request, error
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
@@ -82,6 +83,38 @@ class CampusConversationTests(unittest.TestCase):
         self.assertIn('ymlu@mail.nutn.edu.tw', response['answer'])
         self.assertIn('ee.nutn.edu.tw', response['citations'][0]['url'])
         self.assertNotEqual(response['citations'][0]['label'], '南大資工系－師資陣容')
+
+    def test_teacher_email_and_research_are_both_answered(self):
+        for query in ('林朝興教授信箱跟研究方向', '林朝興教授的研究方向與信箱'):
+            with self.subTest(query=query):
+                result = self.service.chat(query)
+                self.assertEqual(result['status'], 'ok')
+                self.assertIn('mikelin@mail.nutn.edu.tw', result['answer'])
+                self.assertIn('深度學習', result['answer'])
+                self.assertEqual(result['citations'][0]['source_id'], 'nutn-csie-faculty')
+        self.assertNotIn('@', self.service.chat('林朝興教授的研究方向')['answer'])
+
+    def test_teacher_contact_is_retained_when_research_is_missing(self):
+        teacher = self.service.teacher_by_name['張主揚']
+        self.assertFalse(teacher['research_areas'])
+        result = self.service.chat('張主揚老師的信箱跟研究方向')
+        self.assertEqual(result['status'], 'partial')
+        self.assertEqual(result['error']['code'], 'RESEARCH_NOT_IN_SOURCE')
+        self.assertIn(teacher['public_email'], result['answer'])
+        self.assertIn('未提供研究領域', result['answer'])
+        self.assertEqual(result['citations'][0]['source_id'], teacher['source_id'])
+        self.assertEqual(self.service.chat('張主揚老師的研究方向')['status'], 'insufficient_evidence')
+
+    def test_teacher_research_is_retained_when_email_is_missing(self):
+        teacher = self.service.teacher_by_name['林朝興']
+        with patch.dict(teacher, public_email=None):
+            result = self.service.chat('林朝興教授信箱跟研究方向')
+        self.assertEqual(result['status'], 'partial')
+        self.assertEqual(result['error']['code'], 'EMAIL_NOT_IN_SOURCE')
+        self.assertIn('深度學習', result['answer'])
+        self.assertIn('未提供公開 Email', result['answer'])
+        self.assertNotIn('@', result['answer'])
+        self.assertIsNone(result['suggested_action'])
 
     def test_directory_coverage_is_partial_not_all_faculty_claim(self):
         coverage = self.service.config()['campus_coverage']

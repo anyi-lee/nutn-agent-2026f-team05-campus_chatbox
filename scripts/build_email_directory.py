@@ -28,12 +28,17 @@ def build_directory():
     units = [{'name': unit['name'], 'category': unit['category'], 'url': unit['url']}
              for unit in catalog.units]
     admin_names = [unit['name'] for unit in units if unit['category'] == 'administrative']
-    for unit in units:
+    for unit, source in zip(units, catalog.units):
         if unit['category'] == 'administrative':
             # The official snapshot spells sections with their office prefix.
             # Use that explicit prefix, not a guessed semantic relationship.
             parents = [name for name in admin_names if name != unit['name'] and unit['name'].startswith(name)]
             unit['parent_office'] = min(parents, key=len) if parents else unit['name']
+            if source.get('telephone'):
+                extensions = '、'.join(source.get('extensions') or [])
+                unit['phone'] = source['telephone'] + (f' 轉 {extensions}' if extensions else '')
+            if source.get('email_windows'):
+                unit['url'] = source['email_windows_source']['url']
     recipients = [{'name': row['teacher_name'], 'title': row['title'],
                    'department': row.get('department', '資訊工程學系'),
                    'kind': row.get('recipient_kind', 'faculty')}

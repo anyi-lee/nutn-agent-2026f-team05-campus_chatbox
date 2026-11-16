@@ -142,7 +142,8 @@ class CampusToolServer:
         matches = exact or original_name or [
             teacher
             for teacher in self.teachers
-            if query in teacher["teacher_name"] or teacher["teacher_name"] in query
+            if not teacher.get("office_contact")
+            and (query in teacher["teacher_name"] or teacher["teacher_name"] in query)
         ]
         if not matches:
             return {

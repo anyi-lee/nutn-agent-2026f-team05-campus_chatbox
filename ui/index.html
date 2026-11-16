@@ -6,7 +6,7 @@
     <meta name="description" content="南大全校公開資訊查詢與處室／學系 Email 草稿助手">
     <title>南大校務通｜Campus Agent</title>
     <link rel="stylesheet" href="/styles.css">
-    <script src="/app.js?v=email-form-2" defer></script>
+    <script src="/app.js?v=email-form-4" defer></script>
   </head>
   <body>
     <div class="app-shell">
@@ -115,6 +115,11 @@
                 <span><strong>查服務資訊</strong><small>尚未收錄時，提供官方確認管道</small></span>
                 <b>→</b>
               </button>
+              <button class="quick-card" id="quick-mas" type="button" hidden>
+                <span class="quick-icon teal" aria-hidden="true">B</span>
+                <span><strong>同時查老師與系辦</strong><small>師資專家查信箱，行政專家查電話</small></span>
+                <b>→</b>
+              </button>
             </div>
           </div>
 
@@ -183,13 +188,14 @@
             <div class="full form-grid" id="office-picker">
               <label><span>選擇處室 *</span><select id="office-select" required><option value="">請先選擇處室</option></select></label>
               <label><span>選擇組別／聯絡窗口 *</span><select id="office-section-select" disabled required><option value="">請先選擇處室</option></select></label>
+              <label class="full" id="office-contact-picker" hidden><span>選擇承辦窗口 *</span><select id="office-contact-select" disabled><option value="">請先選擇組別</option></select></label>
             </div>
             <div class="full form-grid" id="academic-picker" hidden>
               <label><span>選擇學系 *</span><select id="department-select" disabled><option value="">請先選擇學系</option></select></label>
               <label><span>選擇老師／系辦窗口 *</span><select id="academic-teacher-select" disabled><option value="">請先選擇學系</option></select></label>
             </div>
             <p class="full recipient-note" id="recipient-note" role="status">請先選擇收件處室。僅能使用已驗證的官方公開信箱。</p>
-            <a class="full recipient-source" id="recipient-source" target="_blank" rel="noreferrer" hidden>查看該單位官網 ↗</a>
+            <a class="full recipient-source" id="recipient-source" target="_blank" rel="noreferrer" hidden>查看官方聯絡來源 ↗</a>
           </div>
           <select name="teacher_name" id="teacher-name" hidden aria-hidden="true"></select>
           <div class="form-grid">

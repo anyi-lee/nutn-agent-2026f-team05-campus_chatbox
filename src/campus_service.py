@@ -28,6 +28,7 @@ from gemini_router import (
 )
 from retrieval_baseline import BM25Retriever
 from campus_catalog import CampusCatalog, resolve_recipient
+from campus_mas import CampusMAS, EXAMPLE as MAS_EXAMPLE, compound_request
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
@@ -132,11 +133,11 @@ def _build_email_generator() -> Any:
 
 
 def _chat_workflow_backend() -> str:
-    """Read and validate the Week 06 workflow switch."""
+    """Select the baseline, Week 06 router or Week 08 coordinator."""
 
     backend = os.getenv("CHAT_WORKFLOW_BACKEND", "baseline").strip().lower()
-    if backend not in {"baseline", "routing"}:
-        raise ValueError("CHAT_WORKFLOW_BACKEND must be 'baseline' or 'routing'")
+    if backend not in {"baseline", "routing", "mas"}:
+        raise ValueError("CHAT_WORKFLOW_BACKEND must be 'baseline', 'routing', or 'mas'")
     return backend
 
 
@@ -193,6 +194,7 @@ class CampusService:
         tool_server: CampusToolServer | None = None,
         chat_router: Any | None = None,
         workflow_backend: str | None = None,
+        mas_provider: Any | None = None,
         campus_enabled: bool = False,
         outbox_path: Path = SANDBOX_OUTBOX_PATH,
     ) -> None:
@@ -215,8 +217,10 @@ class CampusService:
         self.valid_source_ids = {row['source_id'] for row in self.chunks}
         self.chunk_by_id = {chunk["chunk_id"]: chunk for chunk in self.chunks}
         self.teacher_by_name = {chunk["teacher_name"]: chunk for chunk in self.chunks}
-        self.bm25 = BM25Retriever(self.chunks)
-        self.dense_stub = DenseStubRetriever(self.chunks)
+        # The named office windows are only authoritative for explicit draft recipients.
+        retrieval_chunks = [row for row in self.chunks if not row.get('office_contact')]
+        self.bm25 = BM25Retriever(retrieval_chunks)
+        self.dense_stub = DenseStubRetriever(retrieval_chunks)
         self.email_generator = email_generator or _build_email_generator()
         self.email_backend = str(
             getattr(self.email_generator, "backend", "manual")
@@ -226,9 +230,14 @@ class CampusService:
             if workflow_backend is not None
             else ("routing" if chat_router is not None else _chat_workflow_backend())
         )
-        if selected_workflow not in {"baseline", "routing"}:
-            raise ValueError("workflow_backend must be 'baseline' or 'routing'")
+        if selected_workflow not in {"baseline", "routing", "mas"}:
+            raise ValueError("workflow_backend must be 'baseline', 'routing', or 'mas'")
         self.chat_workflow_backend = selected_workflow
+        # The older CSIE-only harness keeps its original behavior.
+        self.mas = None
+        if selected_workflow == "mas" and self.catalog:
+            self.mas = CampusMAS(self.chunks, self.catalog, mas_provider,
+                                 office_supplements={"資訊工程學系": self.office_chunk})
         self.chat_router = (
             chat_router
             if chat_router is not None
@@ -313,6 +322,9 @@ class CampusService:
                     else None
                 ),
                 "allowed_routes": list(ALLOWED_ROUTES),
+                **({"workflow": "mas", "provider": self.mas.provider.provider,
+                    "configured": self.mas.provider.configured, "model": self.mas.provider.model,
+                    "example": MAS_EXAMPLE, "allowed_routes": []} if self.mas else {}),
             },
         }
 
@@ -530,13 +542,18 @@ class CampusService:
             "role_anchor": unique_role,
         }
 
+    def mas_targets(self, message: str):
+        return compound_request(message) if self.mas is not None else None
+
     def chat(
         self,
         message: str,
         retriever: str = "bm25",
         context_teacher: str | None = None,
+        *,
+        allow_mas: bool = True,
     ) -> dict[str, Any]:
-        """Use the baseline condition chain or the Week 06 routing candidate."""
+        """Keep the original entry point for all chat workflows."""
 
         query = message.strip()
         if not query:
@@ -569,6 +586,10 @@ class CampusService:
                 }
             return response
 
+        targets = self.mas_targets(query) if allow_mas else None
+        if targets is not None:
+            return self.mas.run(targets)
+
         if self.catalog:
             explicit_people = [r for r in self.chunks if r.get('recipient_kind') == 'faculty'
                                and (r.get('person_name') or r['teacher_name']) in query]
@@ -590,11 +611,6 @@ class CampusService:
                             'citations': [], 'retrieval': None, 'suggested_action': None, 'detected_teacher': None,
                             'error': {'code': 'AMBIGUOUS_RECIPIENT'}}
                 row = candidates[0]
-                if _contains_any(query, RESEARCH_TERMS) and not row.get('research_areas'):
-                    return {'status': 'insufficient_evidence', 'answer': f"已找到{row['teacher_name']}的官方聯絡頁，但目前快照沒有完整研究領域，請由來源頁確認。",
-                            'citations': [self._chunk_citation(row)], 'retrieval': None,
-                            'detected_teacher': row['teacher_name'], 'suggested_action': 'email_draft',
-                            'error': {'code': 'RESEARCH_NOT_IN_SOURCE'}}
                 # The teaching Dense Stub has only the historical CSIE aliases.
                 # School-wide faculty use BM25 and report the actual retriever.
                 return self._chat_baseline(query, 'bm25', row['teacher_name'])
@@ -940,27 +956,47 @@ class CampusService:
                 "error": {"code": "INSUFFICIENT_EVIDENCE"},
             }
 
-        if _contains_any(query, RESEARCH_TERMS):
-            areas = "、".join(top_chunk["research_areas"])
-            answer = (
-                f"{top_chunk['teacher_name']}老師目前職稱為{top_chunk['title']}。"
-                f"官方系網列出的研究領域包括：{areas}。"
-            )
-        elif _contains_any(query, CONTACT_TERMS):
-            answer = (
-                f"{top_chunk['teacher_name']}老師的公開 Email 是 "
-                f"{top_chunk['public_email']}。這筆資料來自{top_chunk.get('department', '資工系')}官方教師頁面。"
-            )
+        asks_contact = _contains_any(query, CONTACT_TERMS)
+        asks_research = _contains_any(query, RESEARCH_TERMS)
+        public_email = top_chunk.get("public_email")
+        research_areas = top_chunk.get("research_areas") or []
+        status = "ok"
+        error = None
+        if asks_contact or asks_research:
+            name = top_chunk["teacher_name"]
+            answers = []
+            missing = []
+            if asks_contact:
+                if public_email:
+                    department = top_chunk.get("department", "資工系")
+                    answers.append(f"{name}老師的公開 Email 是 {public_email}。這筆資料來自{department}官方教師頁面。")
+                else:
+                    missing.append(("EMAIL_NOT_IN_SOURCE", "公開 Email"))
+            if asks_research:
+                if research_areas:
+                    areas = "、".join(research_areas)
+                    answers.append(
+                        f"{name}老師目前職稱為{top_chunk['title']}。"
+                        f"官方系網列出的研究領域包括：{areas}。"
+                    )
+                else:
+                    missing.append(("RESEARCH_NOT_IN_SOURCE", "研究領域"))
+            if missing:
+                status = "partial" if answers else "insufficient_evidence"
+                error = {"code": missing[0][0] if len(missing) == 1 else "DETAIL_NOT_IN_SOURCE"}
+                fields = "、".join(label for _, label in missing)
+                answers.append(f"目前收錄的官方資料未提供{fields}，請由來源頁確認。")
+            answer = "\n".join(answers)
         else:
-            areas = "、".join(top_chunk["research_areas"][:3])
+            areas = "、".join(research_areas[:3])
             answer = (
                 f"我找到{top_chunk['teacher_name']}老師，職稱是{top_chunk['title']}；"
                 f"主要研究領域包含{areas}。若要聯絡老師，我也可以協助產生 Email 草稿。"
             )
 
-        wants_email = _contains_any(query, ("寄信", "郵件", "email", "e-mail"))
+        wants_email = public_email and (status != "ok" or _contains_any(query, ("寄信", "郵件", "email", "e-mail")))
         return {
-            "status": "ok",
+            "status": status,
             "answer": answer,
             "evidence": self._public_evidence(top_chunk),
             "citations": [self._chunk_citation(top_chunk)],
@@ -969,7 +1005,7 @@ class CampusService:
             "suggested_action": "email_draft" if wants_email else None,
             "detected_teacher": top_chunk["teacher_name"],
             "detected_purpose": _detected_purpose(query),
-            "error": None,
+            "error": error,
         }
 
     def create_email_draft(self, payload: Mapping[str, Any]) -> tuple[int, dict[str, Any]]:
@@ -1004,9 +1040,17 @@ class CampusService:
                 "reason": "詢問內容至少需要 5 個字。",
             }
 
+        recipient_query = str(normalized["teacher_name"])
+        if self.catalog and any(unit['category'] == 'administrative' and unit['name'] == recipient_query
+                                and not unit.get('public_email') for unit in self.catalog.units):
+            return 404, {
+                "status": "not_found",
+                "error": {"code": "OFFICE_RECIPIENT_NOT_VERIFIED"},
+                "reason": "此組別沒有已驗證的共用信箱，請選擇承辦窗口，或由官網確認聯絡方式。",
+            }
         contact_result = self.tool_server.call_tool(
             "get_teacher_contact",
-            {"teacher_query": str(normalized["teacher_name"])},
+            {"teacher_query": recipient_query},
         )
         if contact_result['status'] == 'ambiguous':
             return 409, {
@@ -1127,7 +1171,7 @@ class CampusService:
             "citations": [self._chunk_citation(teacher)],
             "requires_confirmation": True,
             "send_status": "not_sent",
-            "reason": "收件人已由官方教師資料驗證；目前只建立草稿，不會寄出。",
+            "reason": "收件人已由官方資料驗證；目前只建立草稿，不會寄出。",
             "delivery": {
                 "mode": "sandbox",
                 "label": "Sandbox 模擬寄送",

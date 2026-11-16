@@ -436,11 +436,17 @@ class SessionHost:
             teacher = conversation.teacher
             personal_candidates, used_personal, unresolved_teacher = [], [], []
             chat_message = payload.get("message", "")
-            memories = self.accounts.list_memories(conversation.account_id) if not is_email and conversation.account_id else []
+            public_mas = not is_email and service.mas_targets(chat_message) is not None
+            memories = self.accounts.list_memories(conversation.account_id) if not is_email and not public_mas and conversation.account_id else []
 
         # Model/network work must not hold the session store lock: reset can win.
         try:
-            if path == "/api/chat":
+            if public_mas:
+                # This task is public-only, even for signed-in users. Do not
+                # retrieve personal facts, rewrite the query, or use old context.
+                result = service.chat(chat_message, payload.get("retriever", "bm25"))
+                status = 200
+            elif path == "/api/chat":
                 memory_plan = None
                 analysis = {"backend": "rules", "live_status": "LIVE_NOT_RUN", "status": "not_configured"}
                 if conversation.account_id:
@@ -501,6 +507,10 @@ class SessionHost:
                             result.update(detected_teacher=name, suggested_action="email_draft")
                 elif unresolved_teacher:
                     result = {"status": "needs_clarification", "answer": "個人記憶中的教師無法對應目前有效的官方教師資料，請提供完整姓名或更新記憶後再查詢。", "citations": [], "error": {"code": "PERSONAL_TEACHER_UNRESOLVED"}}
+                elif service.mas_targets(chat_message) is not None:
+                    # Only the original explicit query is eligible for MAS.
+                    # Never delegate text produced by private memory rewriting.
+                    result = service.chat(chat_message, payload.get("retriever", "bm25"), teacher, allow_mas=False)
                 else:
                     result = service.chat(chat_message, payload.get("retriever", "bm25"), teacher)
                 result["personal_memory_analysis"] = analysis if conversation.account_id else {"status": "guest_disabled", "live_status": "LIVE_NOT_RUN"}
