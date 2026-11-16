@@ -4,6 +4,8 @@
 
 組別：第五組（Team 05）。
 
+Week 08 B 候選版：[中央分工、啟動方式與驗證證據](docs/week08/README.md)。預設仍為原版問答；啟用 `CHAT_WORKFLOW_BACKEND=mas` 才會使用複合查詢候選。
+
 ## 期中報告（2026-11-04）
 
 - [第五組期中報告最終簡報 PDF（28 頁）](docs/midterm/final_2026-11-04/NUTN_Campus_Agent_Midterm_Team05_2026-11-04.pdf)

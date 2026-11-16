@@ -1,0 +1,790 @@
+{
+  "recorded_at": "2026-11-16T22:16:53.653421+08:00",
+  "evidence_mode": "TEST_PROVIDER",
+  "live_status": "LIVE_NOT_RUN",
+  "live_calls": 0,
+  "baseline_sha": "4764e4c2a0733cbaead59b28494376b26adc8cff",
+  "checkout_head": "4764e4c2a0733cbaead59b28494376b26adc8cff",
+  "version_note": "checkout_head does not identify uncommitted candidate changes",
+  "comparison_note": "baseline uses the original route with the same current sources; it is not a separate checkout",
+  "input_sha256": {
+    "data/faculty_chunks.json": "6d8fc7c8732b0944066b1a5c517d4cd42b6d38da9b1ce23cb0fa6f7b2d963ddd",
+    "data/office_chunks.json": "2ff12a0136ebe0de735d97ad53246b4c88fa4cf6f02e67b8da38da360d8054e3",
+    "data/campus_catalog.json": "0b09c06cdea2674141917eb02fbc7fe785644ad15a7ae0fda1a0b7a5b6bc6731"
+  },
+  "worktree_sha256": {
+    "app.py": "492e6eca6d65b94d53daa85a63394b283115042309cc6dcb6393ee442ad368f7",
+    "src/campus_mas.py": "67a2e2f6881ba6133bbaa506a9617f353e74eca94c21db92504198739c2e6cf8",
+    "src/campus_service.py": "0509a9e9c8817581cfda7757bed1b3aeb420a5664d5982abee987fc04cfe09b9",
+    "src/campus_catalog.py": "f1c56b2b21ac99a52602404f3b71ef681be671f27484f6c845478cd0619407d1",
+    "src/session_host.py": "b0797be58e92f72f90c081ab2a93806f60ce3ec5b6812ac6f7b4a5092cba4426",
+    "src/email_tools.py": "fed1fa5d2fcc3583600b1065d33eec64b8e138e6f22692e48cb6457ae6faec0a",
+    "src/gemini_email.py": "85a9e15236e3eff8a8052d11ae040485ca3bd76e20bc95facf418c697fca9b33",
+    "ui/index.html": "2856e0803c81e4a3e3681b3f56ece2d8e7da6310e62b7eb1c762cded46be90b4",
+    "ui/app.js": "88537cbb02c81e121d9fac39a2ca986f5b5d8a758545dea73d442f9857cf3c8d",
+    "ui/styles.css": "ba8b39c1011976ad5a5ddd762b4952f54a7856ed147f20cd52dd375aa0aff234",
+    "ui/email_directory.json": "2545384ffdd3de332d2545e3115e307e70072a17b7e201abe216a06847e24c3f",
+    "scripts/run_with_gemini.sh": "c587b39173cce52253a431898f11985f279cf513665b47afa9a8b3a98758d015",
+    "scripts/run_week08_comparison.py": "91808471b2ff2e12001b592168c4847abf086b58a8d150322467bc62e8f03b63",
+    "tests/test_week08_mas.py": "4be9a0db7d0618fc2f1de20ab76025671c0198e7f00e3e45218409246fcf04a5",
+    "tests/week08_fixture.py": "5b44985beec9ce6d420eb8d8a3c089b2a3844539bc03bf1704c1de90407803bd"
+  },
+  "same_source_snapshot": "8b044a4e504903486d5a94a94dd50c6fec9b99570fd1af5fb1627a21341f88e2",
+  "cases": {
+    "normal": {
+      "input": "許世昌老師的信箱和電機系辦電話",
+      "baseline": {
+        "http_status": 200,
+        "status": "ok",
+        "answer": "南大資工系辦地址是 700 台南市中西區樹林街二段33號；電話 (06) 2606123 轉 7701、7702，Email 是 csie@mail.nutn.edu.tw。官網目前沒有公布固定辦公時間。",
+        "citations": [
+          {
+            "source_id": "nutn-csie-homepage-contact",
+            "chunk_id": "office-csie-main",
+            "label": "南大資工系－官方網站",
+            "url": "https://csie.nutn.edu.tw/"
+          }
+        ],
+        "workflow": null,
+        "error": null
+      },
+      "candidate": {
+        "http_status": 200,
+        "status": "ok",
+        "answer": "許世昌老師信箱：scshei@mail.nutn.edu.tw\n電機工程學系辦公室電話：(06)2602315",
+        "citations": [
+          {
+            "source_id": "nutn-campus-9296f520c96c",
+            "chunk_id": "campus-person-070044bf391ecd",
+            "label": "許世昌－官方師資",
+            "url": "https://ee.nutn.edu.tw/?page_id=34"
+          },
+          {
+            "source_id": "campus-unit-dee311f46670-phone",
+            "chunk_id": "campus-unit-dee311f46670",
+            "label": "電機工程學系－官方電話",
+            "url": "https://ee.nutn.edu.tw/"
+          }
+        ],
+        "workflow": {
+          "name": "mas",
+          "run_id": "week08-16809134e92e447d9da34da38f662ee9",
+          "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3",
+          "provider": "test_provider",
+          "model": "scripted-v1",
+          "status": "ok",
+          "stop_reason": "BOTH_VERIFIED",
+          "live_status": "LIVE_NOT_RUN",
+          "evidence_mode": "test_provider",
+          "elapsed_ms": 0,
+          "model_calls": 4,
+          "live_calls": 0,
+          "total_tokens": null,
+          "final_role": "coordinator",
+          "ledger": [
+            {
+              "task_id": "week08-16809134e92e447d9da34da38f662ee9:faculty",
+              "owner": "faculty",
+              "status": "found",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            },
+            {
+              "task_id": "week08-16809134e92e447d9da34da38f662ee9:office",
+              "owner": "office",
+              "status": "found",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            }
+          ],
+          "result_board": [
+            {
+              "status": "found",
+              "display_name": "許世昌",
+              "value": "scshei@mail.nutn.edu.tw",
+              "citation": {
+                "source_id": "nutn-campus-9296f520c96c",
+                "chunk_id": "campus-person-070044bf391ecd",
+                "label": "許世昌－官方師資",
+                "url": "https://ee.nutn.edu.tw/?page_id=34"
+              },
+              "task_id": "week08-16809134e92e447d9da34da38f662ee9:faculty",
+              "from": "faculty",
+              "to": "coordinator",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            },
+            {
+              "status": "found",
+              "display_name": "電機工程學系辦公室",
+              "value": "(06)2602315",
+              "citation": {
+                "source_id": "campus-unit-dee311f46670-phone",
+                "chunk_id": "campus-unit-dee311f46670",
+                "label": "電機工程學系－官方電話",
+                "url": "https://ee.nutn.edu.tw/"
+              },
+              "task_id": "week08-16809134e92e447d9da34da38f662ee9:office",
+              "from": "office",
+              "to": "coordinator",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            }
+          ],
+          "stages": [
+            {
+              "role": "coordinator",
+              "stage": "plan",
+              "status": "started"
+            },
+            {
+              "role": "coordinator",
+              "stage": "plan",
+              "status": "accepted",
+              "code": "faculty_first"
+            },
+            {
+              "role": "coordinator",
+              "stage": "delegate",
+              "status": "accepted",
+              "owner": "faculty",
+              "task_id": "week08-16809134e92e447d9da34da38f662ee9:faculty"
+            },
+            {
+              "role": "faculty",
+              "stage": "tool_proposal",
+              "status": "started"
+            },
+            {
+              "role": "faculty",
+              "stage": "tool_gate",
+              "status": "passed",
+              "tool": "lookup_faculty_email",
+              "task_id": "week08-16809134e92e447d9da34da38f662ee9:faculty"
+            },
+            {
+              "role": "faculty",
+              "stage": "tool_result",
+              "status": "found",
+              "tool": "lookup_faculty_email",
+              "task_id": "week08-16809134e92e447d9da34da38f662ee9:faculty",
+              "source_id": "nutn-campus-9296f520c96c"
+            },
+            {
+              "role": "faculty",
+              "stage": "deliver",
+              "status": "found",
+              "task_id": "week08-16809134e92e447d9da34da38f662ee9:faculty",
+              "to": "coordinator"
+            },
+            {
+              "role": "coordinator",
+              "stage": "delegate",
+              "status": "accepted",
+              "owner": "office",
+              "task_id": "week08-16809134e92e447d9da34da38f662ee9:office"
+            },
+            {
+              "role": "office",
+              "stage": "tool_proposal",
+              "status": "started"
+            },
+            {
+              "role": "office",
+              "stage": "tool_gate",
+              "status": "passed",
+              "tool": "lookup_office_phone",
+              "task_id": "week08-16809134e92e447d9da34da38f662ee9:office"
+            },
+            {
+              "role": "office",
+              "stage": "tool_result",
+              "status": "found",
+              "tool": "lookup_office_phone",
+              "task_id": "week08-16809134e92e447d9da34da38f662ee9:office",
+              "source_id": "campus-unit-dee311f46670-phone"
+            },
+            {
+              "role": "office",
+              "stage": "deliver",
+              "status": "found",
+              "task_id": "week08-16809134e92e447d9da34da38f662ee9:office",
+              "to": "coordinator"
+            },
+            {
+              "role": "coordinator",
+              "stage": "integrate",
+              "status": "started"
+            },
+            {
+              "role": "coordinator",
+              "stage": "integrate",
+              "status": "accepted",
+              "code": "faculty_first"
+            }
+          ],
+          "access": "READ_ONLY",
+          "write_actions": 0
+        },
+        "error": null
+      }
+    },
+    "csie_colloquial": {
+      "input": "陳榮銘教授的信箱跟資工系辦電話",
+      "baseline": {
+        "http_status": 200,
+        "status": "ok",
+        "answer": "南大資工系辦地址是 700 台南市中西區樹林街二段33號；電話 (06) 2606123 轉 7701、7702，Email 是 csie@mail.nutn.edu.tw。官網目前沒有公布固定辦公時間。",
+        "citations": [
+          {
+            "source_id": "nutn-csie-homepage-contact",
+            "chunk_id": "office-csie-main",
+            "label": "南大資工系－官方網站",
+            "url": "https://csie.nutn.edu.tw/"
+          }
+        ],
+        "workflow": null,
+        "error": null
+      },
+      "candidate": {
+        "http_status": 200,
+        "status": "ok",
+        "answer": "陳榮銘老師信箱：rmchen@mail.nutn.edu.tw\n資訊工程學系辦公室電話：(06) 2606123 轉 7701、7702",
+        "citations": [
+          {
+            "source_id": "nutn-csie-faculty",
+            "chunk_id": "faculty-rmchen",
+            "label": "陳榮銘－官方師資",
+            "url": "https://csie.nutn.edu.tw/faculty"
+          },
+          {
+            "source_id": "nutn-csie-homepage-contact",
+            "chunk_id": "office-csie-main",
+            "label": "資訊工程學系－官方電話",
+            "url": "https://csie.nutn.edu.tw/"
+          }
+        ],
+        "workflow": {
+          "name": "mas",
+          "run_id": "week08-bf907e9f89ed4579840d601e67d664f8",
+          "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3",
+          "provider": "test_provider",
+          "model": "scripted-v1",
+          "status": "ok",
+          "stop_reason": "BOTH_VERIFIED",
+          "live_status": "LIVE_NOT_RUN",
+          "evidence_mode": "test_provider",
+          "elapsed_ms": 0,
+          "model_calls": 4,
+          "live_calls": 0,
+          "total_tokens": null,
+          "final_role": "coordinator",
+          "ledger": [
+            {
+              "task_id": "week08-bf907e9f89ed4579840d601e67d664f8:faculty",
+              "owner": "faculty",
+              "status": "found",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            },
+            {
+              "task_id": "week08-bf907e9f89ed4579840d601e67d664f8:office",
+              "owner": "office",
+              "status": "found",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            }
+          ],
+          "result_board": [
+            {
+              "status": "found",
+              "display_name": "陳榮銘",
+              "value": "rmchen@mail.nutn.edu.tw",
+              "citation": {
+                "source_id": "nutn-csie-faculty",
+                "chunk_id": "faculty-rmchen",
+                "label": "陳榮銘－官方師資",
+                "url": "https://csie.nutn.edu.tw/faculty"
+              },
+              "task_id": "week08-bf907e9f89ed4579840d601e67d664f8:faculty",
+              "from": "faculty",
+              "to": "coordinator",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            },
+            {
+              "status": "found",
+              "display_name": "資訊工程學系辦公室",
+              "value": "(06) 2606123 轉 7701、7702",
+              "citation": {
+                "source_id": "nutn-csie-homepage-contact",
+                "chunk_id": "office-csie-main",
+                "label": "資訊工程學系－官方電話",
+                "url": "https://csie.nutn.edu.tw/"
+              },
+              "task_id": "week08-bf907e9f89ed4579840d601e67d664f8:office",
+              "from": "office",
+              "to": "coordinator",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            }
+          ],
+          "stages": [
+            {
+              "role": "coordinator",
+              "stage": "plan",
+              "status": "started"
+            },
+            {
+              "role": "coordinator",
+              "stage": "plan",
+              "status": "accepted",
+              "code": "faculty_first"
+            },
+            {
+              "role": "coordinator",
+              "stage": "delegate",
+              "status": "accepted",
+              "owner": "faculty",
+              "task_id": "week08-bf907e9f89ed4579840d601e67d664f8:faculty"
+            },
+            {
+              "role": "faculty",
+              "stage": "tool_proposal",
+              "status": "started"
+            },
+            {
+              "role": "faculty",
+              "stage": "tool_gate",
+              "status": "passed",
+              "tool": "lookup_faculty_email",
+              "task_id": "week08-bf907e9f89ed4579840d601e67d664f8:faculty"
+            },
+            {
+              "role": "faculty",
+              "stage": "tool_result",
+              "status": "found",
+              "tool": "lookup_faculty_email",
+              "task_id": "week08-bf907e9f89ed4579840d601e67d664f8:faculty",
+              "source_id": "nutn-csie-faculty"
+            },
+            {
+              "role": "faculty",
+              "stage": "deliver",
+              "status": "found",
+              "task_id": "week08-bf907e9f89ed4579840d601e67d664f8:faculty",
+              "to": "coordinator"
+            },
+            {
+              "role": "coordinator",
+              "stage": "delegate",
+              "status": "accepted",
+              "owner": "office",
+              "task_id": "week08-bf907e9f89ed4579840d601e67d664f8:office"
+            },
+            {
+              "role": "office",
+              "stage": "tool_proposal",
+              "status": "started"
+            },
+            {
+              "role": "office",
+              "stage": "tool_gate",
+              "status": "passed",
+              "tool": "lookup_office_phone",
+              "task_id": "week08-bf907e9f89ed4579840d601e67d664f8:office"
+            },
+            {
+              "role": "office",
+              "stage": "tool_result",
+              "status": "found",
+              "tool": "lookup_office_phone",
+              "task_id": "week08-bf907e9f89ed4579840d601e67d664f8:office",
+              "source_id": "nutn-csie-homepage-contact"
+            },
+            {
+              "role": "office",
+              "stage": "deliver",
+              "status": "found",
+              "task_id": "week08-bf907e9f89ed4579840d601e67d664f8:office",
+              "to": "coordinator"
+            },
+            {
+              "role": "coordinator",
+              "stage": "integrate",
+              "status": "started"
+            },
+            {
+              "role": "coordinator",
+              "stage": "integrate",
+              "status": "accepted",
+              "code": "faculty_first"
+            }
+          ],
+          "access": "READ_ONLY",
+          "write_actions": 0
+        },
+        "error": null
+      }
+    },
+    "unknown_teacher": {
+      "input": "不存在老師的信箱和電機系辦電話",
+      "baseline": {
+        "http_status": 200,
+        "status": "insufficient_evidence",
+        "answer": "電機工程學系：電話 (06)2602315這筆單位聯絡資料不能代替特定教師的資料；目前師資收錄不完整，請提供教師全名，或查看該系官方師資頁。 官網：https://ee.nutn.edu.tw/",
+        "citations": [
+          {
+            "source_id": "nutn-campus-directory",
+            "chunk_id": "campus-unit-dee311f46670",
+            "label": "南大官方－電機工程學系",
+            "url": "https://web.nutn.edu.tw/teaching.html"
+          },
+          {
+            "source_id": "nutn-campus-directory",
+            "chunk_id": "campus-unit-dee311f46670",
+            "label": "南大官方－電機工程學系",
+            "url": "https://ee.nutn.edu.tw/"
+          }
+        ],
+        "workflow": null,
+        "error": {
+          "code": "DETAIL_NOT_IN_SOURCE"
+        }
+      },
+      "candidate": {
+        "http_status": 200,
+        "status": "partial",
+        "answer": "不存在老師信箱：目前官方快照未收錄這筆資料。\n電機工程學系辦公室電話：(06)2602315",
+        "citations": [
+          {
+            "source_id": "campus-unit-dee311f46670-phone",
+            "chunk_id": "campus-unit-dee311f46670",
+            "label": "電機工程學系－官方電話",
+            "url": "https://ee.nutn.edu.tw/"
+          }
+        ],
+        "workflow": {
+          "name": "mas",
+          "run_id": "week08-038b63e16feb48c4abf13e760cb02cf1",
+          "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3",
+          "provider": "test_provider",
+          "model": "scripted-v1",
+          "status": "partial",
+          "stop_reason": "MAS_PARTIAL",
+          "live_status": "LIVE_NOT_RUN",
+          "evidence_mode": "test_provider",
+          "elapsed_ms": 0,
+          "model_calls": 4,
+          "live_calls": 0,
+          "total_tokens": null,
+          "final_role": "coordinator",
+          "ledger": [
+            {
+              "task_id": "week08-038b63e16feb48c4abf13e760cb02cf1:faculty",
+              "owner": "faculty",
+              "status": "not_found",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            },
+            {
+              "task_id": "week08-038b63e16feb48c4abf13e760cb02cf1:office",
+              "owner": "office",
+              "status": "found",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            }
+          ],
+          "result_board": [
+            {
+              "status": "not_found",
+              "task_id": "week08-038b63e16feb48c4abf13e760cb02cf1:faculty",
+              "from": "faculty",
+              "to": "coordinator",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            },
+            {
+              "status": "found",
+              "display_name": "電機工程學系辦公室",
+              "value": "(06)2602315",
+              "citation": {
+                "source_id": "campus-unit-dee311f46670-phone",
+                "chunk_id": "campus-unit-dee311f46670",
+                "label": "電機工程學系－官方電話",
+                "url": "https://ee.nutn.edu.tw/"
+              },
+              "task_id": "week08-038b63e16feb48c4abf13e760cb02cf1:office",
+              "from": "office",
+              "to": "coordinator",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            }
+          ],
+          "stages": [
+            {
+              "role": "coordinator",
+              "stage": "plan",
+              "status": "started"
+            },
+            {
+              "role": "coordinator",
+              "stage": "plan",
+              "status": "accepted",
+              "code": "faculty_first"
+            },
+            {
+              "role": "coordinator",
+              "stage": "delegate",
+              "status": "accepted",
+              "owner": "faculty",
+              "task_id": "week08-038b63e16feb48c4abf13e760cb02cf1:faculty"
+            },
+            {
+              "role": "faculty",
+              "stage": "tool_proposal",
+              "status": "started"
+            },
+            {
+              "role": "faculty",
+              "stage": "tool_gate",
+              "status": "passed",
+              "tool": "lookup_faculty_email",
+              "task_id": "week08-038b63e16feb48c4abf13e760cb02cf1:faculty"
+            },
+            {
+              "role": "faculty",
+              "stage": "tool_result",
+              "status": "not_found",
+              "tool": "lookup_faculty_email",
+              "task_id": "week08-038b63e16feb48c4abf13e760cb02cf1:faculty",
+              "source_id": null
+            },
+            {
+              "role": "faculty",
+              "stage": "deliver",
+              "status": "not_found",
+              "task_id": "week08-038b63e16feb48c4abf13e760cb02cf1:faculty",
+              "to": "coordinator"
+            },
+            {
+              "role": "coordinator",
+              "stage": "delegate",
+              "status": "accepted",
+              "owner": "office",
+              "task_id": "week08-038b63e16feb48c4abf13e760cb02cf1:office"
+            },
+            {
+              "role": "office",
+              "stage": "tool_proposal",
+              "status": "started"
+            },
+            {
+              "role": "office",
+              "stage": "tool_gate",
+              "status": "passed",
+              "tool": "lookup_office_phone",
+              "task_id": "week08-038b63e16feb48c4abf13e760cb02cf1:office"
+            },
+            {
+              "role": "office",
+              "stage": "tool_result",
+              "status": "found",
+              "tool": "lookup_office_phone",
+              "task_id": "week08-038b63e16feb48c4abf13e760cb02cf1:office",
+              "source_id": "campus-unit-dee311f46670-phone"
+            },
+            {
+              "role": "office",
+              "stage": "deliver",
+              "status": "found",
+              "task_id": "week08-038b63e16feb48c4abf13e760cb02cf1:office",
+              "to": "coordinator"
+            },
+            {
+              "role": "coordinator",
+              "stage": "integrate",
+              "status": "started"
+            },
+            {
+              "role": "coordinator",
+              "stage": "integrate",
+              "status": "accepted",
+              "code": "faculty_first"
+            }
+          ],
+          "access": "READ_ONLY",
+          "write_actions": 0
+        },
+        "error": {
+          "code": "MAS_PARTIAL"
+        }
+      }
+    },
+    "missing_office_phone": {
+      "input": "許世昌老師的信箱和應數系辦電話",
+      "baseline": {
+        "http_status": 200,
+        "status": "needs_clarification",
+        "answer": "有多筆相符聯絡資料，請補充系所與完整姓名。",
+        "citations": [],
+        "workflow": null,
+        "error": {
+          "code": "AMBIGUOUS_RECIPIENT"
+        }
+      },
+      "candidate": {
+        "http_status": 200,
+        "status": "partial",
+        "answer": "許世昌老師信箱：scshei@mail.nutn.edu.tw\n應數系辦電話：目前官方快照未收錄這筆資料。",
+        "citations": [
+          {
+            "source_id": "nutn-campus-9296f520c96c",
+            "chunk_id": "campus-person-070044bf391ecd",
+            "label": "許世昌－官方師資",
+            "url": "https://ee.nutn.edu.tw/?page_id=34"
+          }
+        ],
+        "workflow": {
+          "name": "mas",
+          "run_id": "week08-4f565655a2204a7db385f9544dbe1aeb",
+          "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3",
+          "provider": "test_provider",
+          "model": "scripted-v1",
+          "status": "partial",
+          "stop_reason": "MAS_PARTIAL",
+          "live_status": "LIVE_NOT_RUN",
+          "evidence_mode": "test_provider",
+          "elapsed_ms": 0,
+          "model_calls": 4,
+          "live_calls": 0,
+          "total_tokens": null,
+          "final_role": "coordinator",
+          "ledger": [
+            {
+              "task_id": "week08-4f565655a2204a7db385f9544dbe1aeb:faculty",
+              "owner": "faculty",
+              "status": "found",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            },
+            {
+              "task_id": "week08-4f565655a2204a7db385f9544dbe1aeb:office",
+              "owner": "office",
+              "status": "not_found",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            }
+          ],
+          "result_board": [
+            {
+              "status": "found",
+              "display_name": "許世昌",
+              "value": "scshei@mail.nutn.edu.tw",
+              "citation": {
+                "source_id": "nutn-campus-9296f520c96c",
+                "chunk_id": "campus-person-070044bf391ecd",
+                "label": "許世昌－官方師資",
+                "url": "https://ee.nutn.edu.tw/?page_id=34"
+              },
+              "task_id": "week08-4f565655a2204a7db385f9544dbe1aeb:faculty",
+              "from": "faculty",
+              "to": "coordinator",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            },
+            {
+              "status": "not_found",
+              "task_id": "week08-4f565655a2204a7db385f9544dbe1aeb:office",
+              "from": "office",
+              "to": "coordinator",
+              "source_version": "479bf3fcc57e3d777bb7e3e2fca4749461fcbd7462378a28991dc722d69de0d3"
+            }
+          ],
+          "stages": [
+            {
+              "role": "coordinator",
+              "stage": "plan",
+              "status": "started"
+            },
+            {
+              "role": "coordinator",
+              "stage": "plan",
+              "status": "accepted",
+              "code": "faculty_first"
+            },
+            {
+              "role": "coordinator",
+              "stage": "delegate",
+              "status": "accepted",
+              "owner": "faculty",
+              "task_id": "week08-4f565655a2204a7db385f9544dbe1aeb:faculty"
+            },
+            {
+              "role": "faculty",
+              "stage": "tool_proposal",
+              "status": "started"
+            },
+            {
+              "role": "faculty",
+              "stage": "tool_gate",
+              "status": "passed",
+              "tool": "lookup_faculty_email",
+              "task_id": "week08-4f565655a2204a7db385f9544dbe1aeb:faculty"
+            },
+            {
+              "role": "faculty",
+              "stage": "tool_result",
+              "status": "found",
+              "tool": "lookup_faculty_email",
+              "task_id": "week08-4f565655a2204a7db385f9544dbe1aeb:faculty",
+              "source_id": "nutn-campus-9296f520c96c"
+            },
+            {
+              "role": "faculty",
+              "stage": "deliver",
+              "status": "found",
+              "task_id": "week08-4f565655a2204a7db385f9544dbe1aeb:faculty",
+              "to": "coordinator"
+            },
+            {
+              "role": "coordinator",
+              "stage": "delegate",
+              "status": "accepted",
+              "owner": "office",
+              "task_id": "week08-4f565655a2204a7db385f9544dbe1aeb:office"
+            },
+            {
+              "role": "office",
+              "stage": "tool_proposal",
+              "status": "started"
+            },
+            {
+              "role": "office",
+              "stage": "tool_gate",
+              "status": "passed",
+              "tool": "lookup_office_phone",
+              "task_id": "week08-4f565655a2204a7db385f9544dbe1aeb:office"
+            },
+            {
+              "role": "office",
+              "stage": "tool_result",
+              "status": "not_found",
+              "tool": "lookup_office_phone",
+              "task_id": "week08-4f565655a2204a7db385f9544dbe1aeb:office",
+              "source_id": null
+            },
+            {
+              "role": "office",
+              "stage": "deliver",
+              "status": "not_found",
+              "task_id": "week08-4f565655a2204a7db385f9544dbe1aeb:office",
+              "to": "coordinator"
+            },
+            {
+              "role": "coordinator",
+              "stage": "integrate",
+              "status": "started"
+            },
+            {
+              "role": "coordinator",
+              "stage": "integrate",
+              "status": "accepted",
+              "code": "faculty_first"
+            }
+          ],
+          "access": "READ_ONLY",
+          "write_actions": 0
+        },
+        "error": {
+          "code": "MAS_PARTIAL"
+        }
+      }
+    }
+  }
+}
